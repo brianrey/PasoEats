@@ -4,6 +4,12 @@ public class Course {
     private String meetTime;
     private String instructor;
 
+    public Course(String courseName, String roomNum, String meetTime, String instructor) {
+        this.courseName = courseName;
+        this.roomNum = roomNum;
+        this.meetTime = meetTime;
+        this.instructor = instructor;
+    }
 
     public void setCourseName(String courseName){
         this.courseName = courseName;
