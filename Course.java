@@ -53,7 +53,7 @@ public class Course {
         return schedule;
     }
 
-    public void displayDetails(){
+    public void printDetails(){
         System.out.println(courseName);
         System.out.println(roomNum);
         System.out.println(meetTime);
