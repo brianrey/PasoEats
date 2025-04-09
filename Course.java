@@ -52,4 +52,12 @@ public class Course {
     public String getSchedule() {
         return schedule;
     }
+
+    public void displayDetails(){
+        System.out.println(courseName);
+        System.out.println(roomNum);
+        System.out.println(meetTime);
+        System.out.println(instructor);
+        System.out.println(schedule);
+    }
 }
