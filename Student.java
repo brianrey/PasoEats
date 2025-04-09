@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Student{
-    public ArrayList<String> names = new ArrayList<>();
-    ArrayList<String> emails = new ArrayList<>();
+    private ArrayList<String> names = new ArrayList<>();
+    private ArrayList<String> emails = new ArrayList<>();
 
     public Student() {
         names = new ArrayList<>();
