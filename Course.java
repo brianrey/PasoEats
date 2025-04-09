@@ -3,12 +3,14 @@ public class Course {
     private String roomNum;
     private String meetTime;
     private String instructor;
+    private String schedule;
 
-    public Course(String courseName, String roomNum, String meetTime, String instructor) {
+    public Course(String courseName, String roomNum, String meetTime, String instructor, String schedule) {
         this.courseName = courseName;
         this.roomNum = roomNum;
         this.meetTime = meetTime;
         this.instructor = instructor;
+        this.schedule = schedule;
     }
 
     public void setCourseName(String courseName){
@@ -27,19 +29,27 @@ public class Course {
         this.instructor = instructor;
     }
 
-    public String getCourseName(String courseName){
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
+    }
+
+    public String getCourseName(){
         return courseName;
     }
 
-    public String getRoomNum(String roomNum){
+    public String getRoomNum(){
         return roomNum;
     }
 
-    public String getMeetTime(String meetTime){
+    public String getMeetTime(){
         return meetTime;
     }
 
-    public String getInstructor(String instructor){
+    public String getInstructor(){
         return instructor;
+    }
+
+    public String getSchedule() {
+        return schedule;
     }
 }
