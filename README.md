@@ -15,4 +15,12 @@ Schedule: Monday - Wednsday
 Student Roster for CS1:
 Mike - mike@example.com
 Bob - bob@example.com
+
+--------------
+Assignment Details
+Assignment Name: Assignment 1
+Max Grade: 100
+Class Grades: 95
+D
+--------------
 ```
