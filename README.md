@@ -1,6 +1,10 @@
 # PasoEats
 Cuesta College CIS-321 Project Repository.
 
+TODO:
+Update Grade Class
+ - Actually hook up grades to students and assignments
+
 Output looks like this currently.
 ```
 Course Details:
