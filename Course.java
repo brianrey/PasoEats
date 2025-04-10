@@ -69,7 +69,7 @@ public class Course {
     }
 
     public void printDetails(){
-        System.out.println("\nCourse Details:");
+        System.out.println("Course Details:");
         System.out.println("--------------");
         System.out.println("Course Name: " + courseName);
         System.out.println("Room Number: " + roomNum);
