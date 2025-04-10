@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+
 public class Course {
     private String courseName;
     private String roomNum;
     private String meetTime;
     private String instructor;
     private String schedule;
+    private ArrayList<Student> roster;
 
     public Course(String courseName, String roomNum, String meetTime, String instructor, String schedule) {
         this.courseName = courseName;
@@ -11,6 +14,7 @@ public class Course {
         this.meetTime = meetTime;
         this.instructor = instructor;
         this.schedule = schedule;
+        roster = new ArrayList<>();
     }
 
     public void setCourseName(String courseName){
@@ -53,11 +57,25 @@ public class Course {
         return schedule;
     }
 
+    public void addStudent(Student student) {
+        roster.add(student);
+    }
+
+    public void printStudentRoster() {
+        System.out.println("Student Roster for " + courseName + ":");
+        for (Student s : roster) {
+            System.out.println(s.getName() + " - " + s.getEmail());
+        }
+    }
+
     public void printDetails(){
-        System.out.println(courseName);
-        System.out.println(roomNum);
-        System.out.println(meetTime);
-        System.out.println(instructor);
-        System.out.println(schedule);
+        System.out.println("\nCourse Details:");
+        System.out.println("--------------");
+        System.out.println("Course Name: " + courseName);
+        System.out.println("Room Number: " + roomNum);
+        System.out.println("Meeting Time: " + meetTime);
+        System.out.println("Instructor: " + instructor);
+        System.out.println("Schedule: " + schedule);
+        System.out.println("--------------\n");
     }
 }

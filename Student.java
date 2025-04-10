@@ -1,27 +1,25 @@
-import java.util.ArrayList;
+public class Student {
+    private String name;
+    private String email;
 
-public class Student{
-    private ArrayList<String> names = new ArrayList<>();
-    private ArrayList<String> emails = new ArrayList<>();
-
-    public Student() {
-        names = new ArrayList<>();
-        emails = new ArrayList<>();
+    public Student(String name, String email) {
+        this.name = name;
+        this.email = email;
     }
 
-    public void addName(String element) {
-        names.add(element);
+    public String getName() {
+        return name;
     }
 
-    public void addEmail(String element) {
-        emails.add(element);
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getEmailSize() {
-        return emails.size();
+    public String getEmail() {
+        return email;
     }
 
-    public int getNameSize() {
-        return names.size();
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
