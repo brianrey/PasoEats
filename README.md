@@ -2,7 +2,7 @@
 Cuesta College CIS-321 Project Repository.
 
 Output looks like this currently.
-
+```
 Course Details:
 --------------
 Course Name: CS1
@@ -15,3 +15,4 @@ Schedule: Monday - Wednsday
 Student Roster for CS1:
 Mike - mike@example.com
 Bob - bob@example.com
+```
