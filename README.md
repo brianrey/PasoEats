@@ -5,6 +5,8 @@ TODO:
 Update Grade Class
  - Actually hook up grades to students and assignments
 
+Revisit grades and make sure they are returning the correct data type.
+
 Output looks like this currently.
 ```
 Course Details:
