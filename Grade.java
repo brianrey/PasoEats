@@ -1,9 +1,6 @@
+import java.util.ArrayList;
 public class Grade {
     private int grade;
-
-    public Grade(int grade){
-        this.grade = grade;
-    }
 
     public void setGrade(int grade){
         this.grade = grade;
@@ -13,17 +10,28 @@ public class Grade {
         return grade;
     }
 
-    public String getLetterGrade(int grade){
-        if (grade >= 90){
+    public String getLetterGrade(ArrayList<Assignment> assignments){
+        if (assignments.isEmpty()){
+            return "No assignments";
+        }
+
+        int total = 0;
+        for (Assignment assignment : assignments){
+            total += assignment.getScore();
+        }
+
+        int average = total / assignments.size();
+
+        if (average >= 90){
             return "A";
         }
-        else if (grade >= 80){
+        else if (average >= 80){
             return "B";
         }
-        else if (grade >= 70){
+        else if (average >= 70){
             return "C";
         }
-        else if (grade >= 60){
+        else if (average >= 60){
             return "D";
         }
         else {

@@ -1,25 +1,36 @@
-public class Student {
-    private String name;
-    private String email;
+import java.util.ArrayList;
 
-    public Student(String name, String email) {
-        this.name = name;
-        this.email = email;
+public class Student extends Person {
+    private String studentID;
+    private ArrayList<Assignment> assignments;
+
+    public Student(String name, String email, String studentID) {
+        super(name, email);
+        this.studentID = studentID;
+        this.assignments = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
+    public String getID() {
+        return studentID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setID(String studentID) {
+        this.studentID = studentID;
     }
 
-    public String getEmail() {
-        return email;
+    public void addAssignment(String assignmentName, int score){
+        Assignment assignment = new Assignment(assignmentName, score);
+        assignments.add(assignment);
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public ArrayList<Assignment> getAssignments() {
+        return assignments;
     }
+    
+    @Override
+    public void printDetails() {
+        super.printDetails();
+        System.out.println("Student ID: " + studentID);
+    }
+    
 }

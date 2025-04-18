@@ -1,25 +1,27 @@
 public class Main {
     public static void main(String[] args) {
-        Course course = new Course("CS1", "810", "2:00pm", "Professor Dube", "Monday - Wednsday");
+        Manager manager = new Manager();
 
-        course.printDetails();
+        manager.addStudent("mike@example.com", "Mike", "1");
+        manager.addStudent("bob@example.com", "Bob", "2");
 
-        Student mike = new Student("Mike", "mike@example.com");
-        Student bob = new Student("Bob", "bob@example.com");
+        manager.addInstructor("dube@example.com", "Professor Dube", "CS1");
+        manager.addInstructor("smith@example.com", "Professor Smith", "CS2");
 
-        course.addStudent(mike);
-        course.addStudent(bob);
-        course.printStudentRoster();
+        manager.addCourse("CS1", "810", "2:00pm", "Professor Dube", "Monday - Wednsday");
+        manager.addCourse("CS2", "811", "2:00pm", "Professor Smith", "Monday - Wednsday");
 
-        System.out.println("\n--------------");
-        System.out.println("Assignment Details");
+        manager.printStudents();
+        manager.printInstructors();
+        manager.printCourses();
 
-        Assignment assignment = new Assignment("Assignment 1", 100);
-        assignment.printDetails();
+        manager.addAssignment("1", "Assignment 1", 100);
+        
+        manager.addAssignment("2", "Assignment 2", 85);
+        manager.addAssignment("2", "Assignment 3", 82);
+        manager.addAssignment("2", "Assignment 4", 83);
 
-        Grade grade = new Grade(95);
-        grade.getClassGrades();
-        System.out.println(grade.getLetterGrade(60));
-        System.out.println("--------------");
+        manager.getStudentGrade("1");
+        manager.getStudentGrade("2");
     }
 }
