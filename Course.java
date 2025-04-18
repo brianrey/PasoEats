@@ -2,15 +2,15 @@ import java.util.ArrayList;
 
 public class Course {
     private String courseName;
-    private String roomNum;
+    private String roomNumber;
     private String meetTime;
     private String instructor;
     private String schedule;
     private ArrayList<Student> roster;
 
-    public Course(String courseName, String roomNum, String meetTime, String instructor, String schedule) {
+    public Course(String courseName, String roomNumber, String meetTime, String instructor, String schedule) {
         this.courseName = courseName;
-        this.roomNum = roomNum;
+        this.roomNumber = roomNumber;
         this.meetTime = meetTime;
         this.instructor = instructor;
         this.schedule = schedule;
@@ -21,8 +21,8 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public void setRoomNum(String roomNum){
-        this.roomNum = roomNum;
+    public void setRoomNumber(String roomNumber){
+        this.roomNumber = roomNumber;
     }
 
     public void setMeetTime(String meetTime){
@@ -41,8 +41,8 @@ public class Course {
         return courseName;
     }
 
-    public String getRoomNum(){
-        return roomNum;
+    public String getRoomNumber(){
+        return roomNumber;
     }
 
     public String getMeetTime(){
@@ -57,6 +57,14 @@ public class Course {
         return schedule;
     }
 
+    public ArrayList<Student> getRoster() {
+        return roster;
+    }
+
+    public void setRoster(ArrayList<Student> roster) {
+        this.roster = roster;
+    }
+
     public void addStudent(Student student) {
         roster.add(student);
     }
@@ -69,13 +77,10 @@ public class Course {
     }
 
     public void printDetails(){
-        System.out.println("Course Details:");
-        System.out.println("--------------");
         System.out.println("Course Name: " + courseName);
-        System.out.println("Room Number: " + roomNum);
+        System.out.println("Room Number: " + roomNumber);
         System.out.println("Meeting Time: " + meetTime);
         System.out.println("Instructor: " + instructor);
         System.out.println("Schedule: " + schedule);
-        System.out.println("--------------\n");
     }
 }
