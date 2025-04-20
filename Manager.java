@@ -43,6 +43,50 @@ public class Manager {
         }
     }
 
+    public void enrollStudent(String studentID, String courseName) {
+        Student studentToEnroll = getStudent(studentID); 
+        Course courseToEnroll = getCourse(courseName);
+    
+        if (studentToEnroll != null && courseToEnroll != null) {
+            courseToEnroll.addStudent(studentToEnroll);
+        } 
+        else {
+            if (studentToEnroll == null) {
+                System.out.println("Student not found");
+            }
+            else {
+                System.out.println("Course not found");
+            }
+        }
+    }
+
+    public Student getStudent(String studentID) {
+        for (Student student : students) {
+            if (student.getID().equals(studentID)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    public Instructor getInstructor(String name) {
+        for (Instructor instructor : instructors) {
+            if (instructor.getName().equals(name)) {
+                return instructor;
+            }
+        }
+        return null;
+    }
+
+    public Course getCourse(String name) {
+        for (Course course : courses) {
+            if (course.getCourseName().equals(name)) {
+                return course;
+            }
+        }
+        return null;
+    }
+
     public void printStudents(){
         System.out.println("Students: ");
         for (Student student : students) {
@@ -63,5 +107,4 @@ public class Manager {
             course.printDetails();
         }
     }
-    // TODO: getCourse, getInstructor, getStudent
 }
