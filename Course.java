@@ -71,8 +71,8 @@ public class Course {
 
     public void printStudentRoster() {
         System.out.println("Student Roster for " + courseName + ":");
-        for (Student s : roster) {
-            System.out.println(s.getName() + " - " + s.getEmail());
+        for (Student student : roster) {
+            System.out.println(student.getName() + " - " + student.getEmail());
         }
     }
 
