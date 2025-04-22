@@ -30,33 +30,6 @@ public class Manager {
         System.out.println("Student not found");
     }
 
-    public int getStudent(String studentID){
-        for(int count = 0; count < students.size(); count++){
-            if(students.get(count).getID().equals(studentID)){
-                return count;
-            }
-        }
-        return -1; 
-    }
-
-    public int getInstructor(String name){
-        for(int count = 0; count < instructors.size(); count++){
-            if(instructors.get(count).getName().equals(name)){
-                return count;
-            }
-        }
-        return -1; 
-    }
-
-    public int getCourse(String name){
-        for(int count = 0; count < courses.size(); count++){
-            if(courses.get(count).getCourseName().equals(name)){
-                return count;
-            }
-        }
-        return -1; 
-    }
-
     public void getStudentGrade(String studentID) {
         for (Student student : students) {
             if (student.getID().equals(studentID)) {
@@ -120,24 +93,6 @@ public class Manager {
             student.printDetails();
         }
     }
-    
-    public void printStudent(String studentID){
-        int idx = getStudent(studentID);
-        if(idx > 0){
-            students.get(idx).printDetails();
-        }
-        else{
-            System.out.println("Student not found");
-        }
-    }
-
-    public void exportStudent(String studentID){
-        // export  single student here
-    }
-
-    public void exportStudents(String studentID){
-        // export students here
-    }
 
     public void printInstructors(){
         System.out.println("Instructors: ");
@@ -152,5 +107,4 @@ public class Manager {
             course.printDetails();
         }
     }
-    // TODO: exportStudent() & exportStudents()
 }
