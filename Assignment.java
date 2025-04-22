@@ -1,11 +1,11 @@
 public class Assignment {
     private String assignmentName;
     private int score;
-    private static final int maxScore = 100;
+    private static final int MAX_SCORE = 100;
 
     public Assignment(String assignmentName, int score){
         this.assignmentName = assignmentName;
-        this.score = Math.min(score, maxScore);
+        this.score = Math.min(score, MAX_SCORE);
     }
     
     public void setAssignmentName(String assignmentName){
@@ -13,7 +13,7 @@ public class Assignment {
     }
 
     public void setScore(int score){
-        this.score = Math.min(score, maxScore);
+        this.score = Math.min(score, MAX_SCORE);
     }
 
     public String getAssignmentName(){
@@ -21,7 +21,7 @@ public class Assignment {
     }
 
     public int getMaxScore(){
-        return maxScore;
+        return MAX_SCORE;
     }
 
     public int getScore(){
@@ -30,6 +30,6 @@ public class Assignment {
 
     public void printDetails(){
         System.out.println("Assignment Name: " + assignmentName);
-        System.out.println("Score: " + score + "/" + maxScore);
+        System.out.println("Score: " + score + "/" + MAX_SCORE);
     }
 }
