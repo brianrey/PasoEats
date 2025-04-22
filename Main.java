@@ -11,6 +11,9 @@ public class Main {
         manager.addCourse("CS1", "810", "2:00pm", "Professor Dube", "Monday - Wednsday");
         manager.addCourse("CS2", "811", "2:00pm", "Professor Smith", "Monday - Wednsday");
 
+        manager.enrollStudent("1", "CS1");
+        manager.enrollStudent("2", "CS2");
+
         manager.printStudents();
         manager.printInstructors();
         manager.printCourses();
