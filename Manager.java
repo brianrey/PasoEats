@@ -5,6 +5,10 @@ public class Manager {
     private ArrayList<Instructor> instructors = new ArrayList<Instructor>();
     private ArrayList<Course> courses = new ArrayList<Course>();
 
+    public Manager() {
+        // Constructor
+    }
+
     public void addStudent(String email, String name, String studentID) {
         Student student = new Student(name, email, studentID);
         students.add(student);
@@ -37,6 +41,10 @@ public class Manager {
             }
         }
         return -1; 
+    }
+
+    public ArrayList<Student> getStudents(){
+        return students;
     }
 
     public int getInstructor(String name){

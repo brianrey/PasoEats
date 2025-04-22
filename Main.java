@@ -2,6 +2,9 @@ public class Main {
     public static void main(String[] args) {
         Manager manager = new Manager();
 
+        System.out.println("Starting developer sample data injection...");
+        System.out.println("---------------------------------");
+        System.out.println("");
         manager.addStudent("mike@example.com", "Mike", "1");
         manager.addStudent("bob@example.com", "Bob", "2");
 
@@ -23,5 +26,16 @@ public class Main {
 
         manager.getStudentGrade("1");
         manager.getStudentGrade("2");
+
+        System.out.println("End developer sample data injection.");
+        System.out.println("---------------------------------");
+        System.out.println("");
+
+        System.out.println("Starting User Interface...");
+        System.out.println("---------------------------------");
+        System.out.println("");
+        // Initialize the UserInterface with the Manager instance
+        UserInterface ui = new UserInterface(manager);
+        ui.start();
     }
 }
