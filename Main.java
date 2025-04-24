@@ -39,6 +39,6 @@ public class Main {
         System.out.println("");
         // Initialize the UserInterface with the Manager instance
         UserInterface ui = new UserInterface(manager);
-        ui.start();
+        ui.startApp();
     }
 }
