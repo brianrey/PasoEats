@@ -11,8 +11,8 @@ public class Main {
         manager.addInstructor("dube@example.com", "Professor Dube", "CS1");
         manager.addInstructor("smith@example.com", "Professor Smith", "CS2");
 
-        manager.addCourse("CS1", "810", "2:00pm", "Professor Dube", "Monday - Wednsday");
-        manager.addCourse("CS2", "811", "2:00pm", "Professor Smith", "Monday - Wednsday");
+        manager.addCourse("CS1", "810", "2:00pm", "Professor Dube", "Monday - Wednesday");
+        manager.addCourse("CS2", "811", "2:00pm", "Professor Smith", "Monday - Wednesday");
 
         manager.enrollStudent("1", "CS1");
         manager.enrollStudent("2", "CS2");
