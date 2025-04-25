@@ -189,7 +189,18 @@ public class Manager {
     }
 
     /**
-     * Prints details of all instructors in the system.
+     * Prints all student IDs in the student ArrayList.
+     */
+    public void printStudentIDs(){
+        System.out.println();
+        System.out.println("Student IDs: ");
+        for (Student student : students) {
+            System.out.println(student.getID());
+        }
+        System.out.println();
+    }
+    /**
+     * Prints details of all instructors in the Instructor ArrayList.
      */
     public void printInstructors(){
         System.out.println("Instructors: ");
@@ -199,12 +210,34 @@ public class Manager {
     }
 
     /**
-     * Prints details of all courses in the system.
+     * Prints all instructor names in the Instructor ArrayList.
+     */
+    public void printInstructorNames(){
+        System.out.println("Instructors: ");
+        for (Instructor instructor : instructors) {
+            System.out.println(instructor.getName());
+        }
+    }
+
+    /**
+     * Prints details of all courses in the Course ArrayList.
      */
     public void printCourses(){
         System.out.println("Courses: ");
         for (Course course : courses) {
             course.printDetails();
         }
+    }
+
+    /**
+     * Prints all course names in the Course ArrayList.
+     */
+    public void printCourseNames(){
+        System.out.println();
+        System.out.println("Courses: ");
+        for (Course course : courses) {
+            System.out.println(course.getCourseName());
+        }
+        System.out.println();
     }
 }

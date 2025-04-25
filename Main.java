@@ -15,9 +15,9 @@ public class Main {
         manager.enrollStudent("1", "CS1");
         manager.enrollStudent("2", "CS2");
 
-        manager.printStudents();
-        manager.printInstructors();
-        manager.printCourses();
+        //manager.printStudents();
+        //manager.printInstructors();
+        //manager.printCourses();
 
         manager.addAssignment("CS2", "Assignment 1", 100);
         manager.addAssignment("CS2", "Assignment 2", 102);
@@ -28,9 +28,9 @@ public class Main {
         manager.addAssignment("CS1", "Assignment 6", 80);
         manager.addAssignment("CS1", "Assignment 7", 80);
 
-        manager.getStudentGrade("1");
-        manager.getStudentGrade("2");
-        
+        //manager.getStudentGrade("1");
+        //manager.getStudentGrade("2");
+
         ui.startApp();
     }
 }

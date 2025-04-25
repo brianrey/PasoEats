@@ -70,6 +70,6 @@ public class Assignment {
      * Prints the details of the assignment & score.
      */
     public void printDetails(){
-        System.out.println("Assignment Name: " + assignmentName + " Score: " + score + "/" + maxScore);
+        System.out.println(assignmentName + ": " + score + "/" + maxScore);
     }
 }
