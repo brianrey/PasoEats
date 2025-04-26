@@ -5,6 +5,7 @@ In `UserInterface.java`
 ```java
 TODO: exportData();
 TODO: exportStudentData();
+TODO: displayGradesAndAverages();
 ```
 
 ![Manager](https://github.com/brianrey/PasoEats/blob/Reese's-Branch/Class%20Diagrams/Manager.png)
