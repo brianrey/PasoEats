@@ -8,6 +8,7 @@ TODO: exportStudentData();
 TODO: displayGradesAndAverages();
 ```
 
+UserInterface.java Flowchart
 ![UserInterface Flowchart](https://github.com/brianrey/PasoEats/blob/Reese's-Branch/Class%20Diagrams/UserInterface%20Flowchart.png)
 ![Manager](https://github.com/brianrey/PasoEats/blob/Reese's-Branch/Class%20Diagrams/Manager.png)
 ![UserInterface](https://github.com/brianrey/PasoEats/blob/Reese's-Branch/Class%20Diagrams/UserInterface.png)
