@@ -1,10 +1,8 @@
 public class Main {
     public static void main(String[] args) {
         Manager manager = new Manager();
+        UserInterface ui = new UserInterface(manager);
 
-        System.out.println("Starting developer sample data injection...");
-        System.out.println("---------------------------------");
-        System.out.println("");
         manager.addStudent("mike@example.com", "Mike", "1");
         manager.addStudent("bob@example.com", "Bob", "2");
 
@@ -17,28 +15,22 @@ public class Main {
         manager.enrollStudent("1", "CS1");
         manager.enrollStudent("2", "CS2");
 
-        manager.printStudents();
-        manager.printInstructors();
-        manager.printCourses();
+        //manager.printStudents();
+        //manager.printInstructors();
+        //manager.printCourses();
 
-        manager.addAssignment("1", "Assignment 1", 100);
+        manager.addAssignment("CS2", "Assignment 1", 100);
+        manager.addAssignment("CS2", "Assignment 2", 102);
+        manager.addAssignment("CS2", "Assignment 3", 100);
+        manager.addAssignment("CS2", "Assignment 4", 100);
         
-        manager.addAssignment("2", "Assignment 2", 85);
-        manager.addAssignment("2", "Assignment 3", 82);
-        manager.addAssignment("2", "Assignment 4", 83);
+        manager.addAssignment("CS1", "Assignment 5", 80);
+        manager.addAssignment("CS1", "Assignment 6", 80);
+        manager.addAssignment("CS1", "Assignment 7", 80);
 
-        manager.getStudentGrade("1");
-        manager.getStudentGrade("2");
+        //manager.getStudentGrade("1");
+        //manager.getStudentGrade("2");
 
-        System.out.println("End developer sample data injection.");
-        System.out.println("---------------------------------");
-        System.out.println("");
-
-        System.out.println("Starting User Interface...");
-        System.out.println("---------------------------------");
-        System.out.println("");
-        // Initialize the UserInterface with the Manager instance
-        UserInterface ui = new UserInterface(manager);
         ui.startApp();
     }
 }

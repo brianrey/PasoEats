@@ -1,733 +1,617 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+/**
+ * This class adds a console-ui to do some cool stuff 😎.
+ */
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class UserInterface {
     private Manager manager;
     private Scanner scanner;
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MM-dd-yyyy_HH-mm");
 
+    /**
+     * Constructs a new UserInterface with the specified Manager.
+     *
+     * @param manager The Manager object
+     * @throws IllegalArgumentException if manager is null
+     */
     public UserInterface(Manager manager) {
+        if (manager == null) { // the UI needs a manager to work so if its null throw an error
+            throw new IllegalArgumentException("Manager instance cannot be null.");
+        }
         this.manager = manager;
         this.scanner = new Scanner(System.in);
     }
 
-
+    /**
+     * Starts the ui and handles the main ui loop.
+     * Displays the welcome message and login menu, then processes user selections.
+     */
     public void startApp() {
-        welcomeMessage();
-        
-        while (true) {
-            System.out.println("Are you an Instructor or a Student?");
-            System.out.println("   1: Instructor");
-            System.out.println("   2: Student");
-            System.out.println("   3: Shut Down");
-            System.out.print("Please select an option: ");
-    
-            int userType = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-    
+        printWelcomeMessage();
+
+        boolean running = true;
+        while (running) {
+            printLoginScreen();
+            int userType = readIntInput("Please select an option (1-3): ");
+
             switch (userType) {
-                case 1: // Instructor Main Menu
-                    // Loop for the instructor menu until they choose to go back to the main menu
-                    while (true) {
-                        instructorMainMenu();
-    
-                        int choice = scanner.nextInt();
-                        scanner.nextLine(); // Consume newline
-    
-                        switch (choice) {
-                            case 1:
-                                manageStudents();
-                                break;
-                            case 2:
-                                manageAssignments();
-                                break;
-                            case 3:
-                                manageInstructors();
-                                break;
-                            case 4:
-                                manageCourses();
-                                break;
-                            case 5:
-                                exportData();
-                                break;
-                            case 6:
-                                System.out.println("Returning to main menu...\n");
-                                break;
-                            default:
-                                System.out.println("Invalid choice. Please try again.\n");
-                        }
-    
-                        if (choice == 6) {
-                            break; // Return to the initial user type selection
-                        }
+                case 1:
+                    instructorMainMenuLoop();
+                    break;
+                case 2:
+                    System.out.println("\n Student Login\n");
+                    String studentID = readStringInput("Please enter your Student ID: ");
+                    Student student = manager.getStudent(studentID);
+
+                    if (student != null) {
+                        System.out.println("\nWelcome, " + student.getName() + "!");
+                        studentMainMenuLoop(student);
+                    } else {
+                        System.out.println("\n\u001B[31mStudent ID: " + studentID + " not found.\u001B[0m");
+                        waitForEnter();
                     }
                     break;
-    
-                case 2: // Student Main Menu
-                    // Loop for the student menu until they choose to go back to the main menu
-                    while (true) {
-                        studentMainMenu();
-    
-                        int choice = scanner.nextInt();
-                        scanner.nextLine(); // Consume newline
-    
-                        switch (choice) {
-                            case 1:
-                                viewGradeSummaryForStu();
-                                break;
-                            case 2:
-                                modifyNameForStu();
-                                break;
-                            case 3:
-                                modifyEmailForStu();
-                                break;
-                            case 4:
-                                exportStuGradeSummary();
-                                break;
-                            case 5:
-                                System.out.println("Returning to main menu...\n");
-                                break;
-                            default:
-                                System.out.println("Invalid choice. Please try again.\n");
-                        }
-    
-                        if (choice == 2) {
-                            break; // Return to the initial user type selection
-                        }
-                    }
+                case 3:
+                    printGoodbyeMessage();
+                    running = false;
                     break;
-    
-                case 3: // Shut Down Application
-                    System.out.println("\nThank you.");
-                    System.out.println("Shutting Down...\n");
-                    return;
-    
                 default:
-                    System.out.println("Invalid choice. Please try again.\n");
+                    System.out.println("\n\u001B[31mInvalid choice. Please enter a number between 1 and 3.\u001B[0m");
+                    waitForEnter();
             }
         }
-    }
 
-    public void welcomeMessage() {
-        // Display the welcome message and version information
-        System.out.println("\n---------------------------------------------");
-        System.out.println("Welcome to the Student Management System.");
-        System.out.println("Developed by: PasoEATS");
-        System.out.println("Version: 0.0+dev");
-        System.out.println("---------------------------------------------\n\n");
+        scanner.close();
     }
-
 
     /**
-     * Displays the main menu options for instructors.
-     * Prompts the user to select an action from the available options.
+     * Prints the welcome message for the ui.
      */
-    // This method is called when the user selects the instructor option in the main menu.
-    public void instructorMainMenu() {
-        // Display the main menu options
-        System.out.println("\nInstructor Main Menu");
-        System.out.println("What action would you like to take?");
+    private void printWelcomeMessage() {
+        System.out.println(" Welcome to the Student Management System");
+        System.out.println(" Developed by: PasoEATS");
+        System.out.println(" Version: 1.0");
+    }
+
+    /**
+     * Prints the login screen with role selection options.
+     */
+    private void printLoginScreen() {
+        System.out.println("");
+        System.out.println(" Login");
+        System.out.println();
+        System.out.println(" Please select your role:");
+        System.out.println("   1: Instructor");
+        System.out.println("   2: Student");
+        System.out.println("   3: Shut Down");
+        System.out.println();
+    }
+
+    /**
+     * Prints the goodbye message when shutting down the ui.
+     */
+    private void printGoodbyeMessage() {
+        System.out.println("\n");
+        System.out.println(" Thank you");
+        System.out.println(" Shutting Down...");
+        System.out.println("\n");
+    }
+
+    /**
+     * Prints the instructor main menu options.
+     */
+    private void printInstructorMenu() {
+        System.out.println("\n");
+        System.out.println(" Instructor Menu");
+        System.out.println();
         System.out.println("   1: Manage Students");
         System.out.println("   2: Manage Assignments");
         System.out.println("   3: Manage Instructors");
         System.out.println("   4: Manage Courses");
         System.out.println("   5: Export Data");
-        System.out.println("   6: Back to Main Menu");
-        System.out.print("Please type an option: ");
+        System.out.println("   6: Log Out");
+        System.out.println();
     }
 
     /**
-     * Displays the main menu options for students.
-     * Prompts the user to select an action from the available options.
+     * Handles the instructor main menu loop and processes instructor selections.
      */
-    // This method is called when the user selects the student option in the main menu.
-    public void studentMainMenu() {
-        // Display the main menu options for students
-        System.out.println("\nStudent Main Menu");
-        System.out.println("What action would you like to take?");
+    private void instructorMainMenuLoop() {
+        boolean loggedIn = true;
+        while (loggedIn) {
+            printInstructorMenu();
+            int choice = readIntInput("Please select an option (1-6): ");
+
+            switch (choice) {
+                case 1:
+                    manageStudents();
+                    break;
+                case 2:
+                    manageAssignments();
+                    break;
+                case 3:
+                    manageInstructors();
+                    break;
+                case 4:
+                    manageCourses();
+                    break;
+                case 5:
+                    exportData();
+                    break;
+                case 6:
+                    System.out.println("\nLogging out...");
+                    loggedIn = false;
+                    break;
+                default:
+                    System.out.println("\n\u001B[31mInvalid choice. Please enter a number between 1 and 6.\u001B[0m");
+                    waitForEnter();
+            }
+        }
+    }
+
+    /**
+     * Prints the student main menu options.
+     */
+    private void printStudentMenu() {
+        System.out.println("");
+        System.out.println(" Student Menu");
+        System.out.println();
         System.out.println("   1: View Grade Summary");
-        System.out.println("   2: Modify Name");
-        System.out.println("   3: Modify Email");
-        System.out.println("   4: Export Grade Summary");
-        System.out.println("   5: Back to Main Menu");
-        System.out.print("Please type an option: ");
+        System.out.println("   2: Modify My Name");
+        System.out.println("   3: Modify My Email");
+        System.out.println("   4: Export Data");
+        System.out.println("   5: Log Out");
+        System.out.println();
     }
 
-    // Instructor Menuing
-
     /**
-     * Displays the menu for managing students.
-     * Prompts the user to select an action from the available options.
+     * Handles the student main menu loop and processes student selections.
+     *
+     * @param student The student currently logged in
      */
-    public void manageStudents() {
-        while (true) {
-            System.out.println("\nManaging Students Menu");
-            System.out.println("What action would you like to take?");
-            System.out.println("   1: Add New Student");
-            System.out.println("   2: Display All Students");
-            System.out.println("   3: Return to Previous Menu");
-            System.out.print("Please select an option: ");
-    
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-    
+    private void studentMainMenuLoop(Student student) {
+         boolean loggedIn = true;
+        while (loggedIn) {
+            printStudentMenu();
+            int choice = readIntInput("Please select an option (1-5): ");
+
             switch (choice) {
                 case 1:
-                    addNewStudent();
+                    gradeSummary(student);
                     break;
                 case 2:
-                    displayAllStudents();
+                    changeStudentName(student);
                     break;
                 case 3:
-                    System.out.println("Returning to previous menu...");
-                    return; // Return to Instructor Main Menu
+                    changeStudentEmail(student);
+                    break;
+                case 4:
+                    exportStudentData();
+                    break;
+                case 5:
+                    System.out.println("\nLogging out...");
+                    loggedIn = false;
+                    break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("\n\u001B[31mInvalid choice. Please enter a number between 1 and 5.\u001B[0m");
+                    waitForEnter();
             }
         }
     }
 
     /**
-     * Adds a new student to the system.
-     * Prompts the user for the student's name, email, and ID, and adds the student to the manager.
-     * If the student is added successfully, a confirmation message is displayed.
-     * If the student already exists, an error message is displayed.
+     * Prints the manage students menu options.
      */
-    public void addNewStudent() {
-        System.out.println("\nAdding New Student");
-        System.out.print("Enter Student ID: ");
-        String studentID = scanner.nextLine();
-        System.out.print("Enter Student Name: ");
-        String studentName = scanner.nextLine();
-        System.out.print("Enter Student Email: ");
-        String studentEmail = scanner.nextLine();
-
-        // Add the new student to the manager
-        manager.addStudent(studentEmail, studentName, studentID);
-        System.out.println("Student added successfully.");
+    private void manageStudentsMenu() {
+        System.out.println("\n Manage Students Menu");
+        System.out.println();
+        System.out.println("   1: Add New Student");
+        System.out.println("   2: Display All Students");
+        System.out.println("   3: Back to Main Menu");
+        System.out.println();
     }
 
     /**
-     * Displays all students in the system.
-     * Retrieves the list of students from the manager and prints their details to the console.
-     * If no students are found, an appropriate message is displayed.
+     * Handles the student management menu loop and processes user selections.
      */
-    public void displayAllStudents() {
-        System.out.println("\nDisplaying All Students");
-        // Display all students in the system
-        manager.printStudents();
-        System.out.println("End of student list.\n");
+    private void manageStudents() {
+        boolean managing = true;
+        while(managing) {
+            manageStudentsMenu();
+            int choice = readIntInput("Please select an option (1-3): ");
+            switch(choice) {
+                case 1:
+                    String studentID = readStringInput("Enter Student ID: ");
+                    if (manager.getStudent(studentID) != null) {
+                        System.out.println("\u001B[31mStudent ID " + studentID + " already exists.\u001B[0m");
+                    } else {
+                        String studentName = readStringInput("Enter Student Name: ");
+                        String studentEmail = readStringInput("Enter Student Email: ");
+                        if (!studentEmail.contains("@") || !studentEmail.contains(".")) {
+                             System.out.println("\u001B[33mEmail format looks invalid.\u001B[0m");
+                        }
+                        manager.addStudent(studentEmail, studentName, studentID);
+                        System.out.println("\n\u001B[32m" + studentName + " has enrolled!\u001B[0m");
+                    }
+                    waitForEnter();
+                    break;
+                case 2:
+                    manager.printStudents();
+                    waitForEnter();
+                    break;
+                case 3:
+                    managing = false;
+                    break;
+                default:
+                    System.out.println("\n\u001B[31mInvalid choice. Please enter 1, 2, or 3.\u001B[0m");
+                    waitForEnter();
+            }
+        }
+        System.out.println("\nReturning to Instructor Menu...");
     }
 
     /**
-     * Displays the menu for managing assignments.
-     * Prompts the user to select an action from the available options.
+     * Prints the manage assignments menu options.
      */
-    public void manageAssignments() {
-        System.out.println("\nManaging Assignments Menu");
-        System.out.println("What action would you like to take?");
-        System.out.println("   1: Add New Assignment");
-        System.out.println("   2: Display All Assignments");
+    private void manageAssignmentsMenu() {
+        System.out.println("\n Manage Assignments Menu");
+        System.out.println();
+        System.out.println("   1: Add Assignment to Course");
+        System.out.println("   2: View Student's Grades");
         System.out.println("   3: Modify Assignment Grade");
-        System.out.println("   4: Return to Previous Menu");
-        System.out.print("Please select an option: ");
-
-        int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
-
-        switch (choice) {
-            case 1:
-                addNewAssignment();
-                break;
-            case 2:
-                displayAllAssignments();
-                break;
-            case 3:
-                modifyAssignmentGrade();
-                break;
-            case 4:
-                System.out.println("Returning to previous menu...");
-                return; // Return to Instructor Main Menu
-            default:
-                System.out.println("Invalid choice. Please try again.");
-        }
+        System.out.println("   4: Back to Main Menu");
+        System.out.println();
     }
 
     /**
-     * Adds a new assignment to a specific student.
-     * Prompts the user for the student ID, assignment name, and score,
-     * and adds the assignment to the student's list of assignments.
-     * If the student is not found, an error message is displayed.
+     * Handles the assignment management menu loop and processes user selections.
      */
-    public void addNewAssignment() {
-        System.out.println("\nAdding New Assignment");
-        System.out.print("Enter Student ID: ");
-        String studentID = scanner.nextLine();
-        System.out.print("Enter Assignment Name: ");
-        String assignmentName = scanner.nextLine();
-        System.out.print("Enter Score: ");
-        int score = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
+    private void manageAssignments() {
+        boolean managing = true;
+        while(managing) {
+            manageAssignmentsMenu();
+            int choice = readIntInput("Please select an option (1-4): ");
+            switch(choice) {
+                case 1:
+                    manager.printCourseNames();
+                    String courseName = readStringInput("Enter Course Name to add assignment to: ");
+                    Course course = manager.getCourse(courseName);
+                    if (course == null) {
+                        System.out.println("\u001B[31mCourse " + courseName + " not found.\u001B[0m");
+                    } else {
+                        String assignmentName = readStringInput("Enter Assignment Name: ");
+                        int maxScore = readIntInput("Enter Max Score for Assignment: ");
+                        if (maxScore <= 0) {
+                             System.out.println("\u001B[31mMax score must be positive.\u001B[0m");
+                        } else {
+                            manager.addAssignment(courseName, assignmentName, maxScore);
+                            System.out.println("\u001B[32mAssignment: " + assignmentName + " added to course " + courseName + ".\u001B[0m");
+                        }
+                    }
+                    waitForEnter();
+                    break;
+                case 2:
+                    manager.printStudentIDs();
+                    String studentID = readStringInput("Enter Student ID to view grades: ");
+                    Student studentToView = manager.getStudent(studentID);
+                    if (studentToView == null) {
+                        System.out.println("\u001B[31mStudent ID " + studentID + " not found.\u001B[0m");
+                        waitForEnter();
+                    } else {
+                        gradeSummary(studentToView);
+                    }
+                    break;
+                case 3:
+                    manager.printStudentIDs();
+                    String studentToModify = readStringInput("Enter Student ID ");
+                    Student studentIDToModify = manager.getStudent(studentToModify);
 
-        // Add the new assignment to the student
-        manager.addAssignment(studentID, assignmentName, score);
-        System.out.println("Assignment added successfully.");
+                    if (studentIDToModify == null) {
+                        System.out.println("\u001B[31mStudent ID " + studentToModify + " not found.\u001B[0m");
+                        waitForEnter();
+                        break;
+                    }
+
+                    List<Assignment> assignments = studentIDToModify.getAssignments();
+                    if (assignments == null || assignments.isEmpty()) {
+                        System.out.println("\u001B[31mStudent " + studentIDToModify.getName() + " has no assignments to modify.\u001B[0m");
+                        waitForEnter();
+                        break;
+                    }
+
+                    System.out.println("\nAssignments for " + studentIDToModify.getName() + ":");
+                    for (int i = 0; i < assignments.size(); i++) {
+                        Assignment currentAssignment = assignments.get(i);
+                        System.out.printf("  %d: %s (%d / %d pts)%n", i + 1, currentAssignment.getAssignmentName(), currentAssignment.getScore(), currentAssignment.getMaxScore());
+                    }
+
+                    int assignmentNum = readIntInput("Enter the number of the assignment to modify (1-" + assignments.size() + "): ");
+
+                    if (assignmentNum < 1 || assignmentNum > assignments.size()) {
+                        System.out.println("\u001B[31mInvalid assignment number.\u001B[0m");
+                    } else {
+                        Assignment assignment = assignments.get(assignmentNum - 1);
+                        System.out.println("Selected: " + assignment.getAssignmentName());
+                        int newScore = readIntInput("Enter the new score (0-" + assignment.getMaxScore() + "): ");
+
+                        assignment.setScore(newScore);
+                        System.out.println("\u001B[32m\n" +assignment.getAssignmentName() + " updated to " + assignment.getScore() + "/" + assignment.getMaxScore() + " pts.\u001B[0m");
+                    }
+                    waitForEnter();
+                    break;
+                case 4:
+                    managing = false;
+                    break;
+                default:
+                    System.out.println("\n\u001B[31mInvalid choice. Please enter 1, 2, 3, or 4.\u001B[0m");
+                    waitForEnter();
+            }
+        }
+        System.out.println("\nReturning to Instructor Menu...");
     }
 
     /**
-     * Displays all assignments for a specific student.
-     * Prompts the user for the student ID and retrieves the student's assignments.
-     * If the student is not found, an error message is displayed.
+     * Prints the manage instructors menu options.
      */
-    public void displayAllAssignments() {
-        System.out.println("\nDisplaying All Assignments");
-        System.out.print("Enter Student ID: ");
-        String studentID = scanner.nextLine();
-
-        // Retrieve the student and their assignments
-        Student student = manager.getStudent(studentID);
-        if (student == null) {
-            System.out.println("Student not found. No student with an ID of " + studentID + " exists.\n");
-            return;
-        } 
-
-        System.out.println("\nAssignments for " + student.getName() + ":");
-        for (Assignment assignment : student.getAssignments()) {
-            System.out.println("  " + assignment.getAssignmentName() + ": " + assignment.getScore() + "/" + assignment.getMaxScore() + " pts");
-        }
-        System.out.println("End of assignment list.\n");
+    private void manageInstructorsMenu() {
+        System.out.println("\n Manage Instructors Menu");
+        System.out.println();
+        System.out.println("   1: Add New Instructor");
+        System.out.println("   2: Display All Instructors");
+        System.out.println("   3: Back to Main Menu");
+        System.out.println();
     }
 
     /**
-     * Modifies the grade of a specific assignment for a student.
-     * Prompts the user for the student ID, retrieves the student's assignments,
-     * and allows the user to change the grade of a selected assignment.
-     * If the student is not found, an error message is displayed.
+     * Handles the instructor management menu loop and processes user selections.
      */
-    public void modifyAssignmentGrade() {
-        System.out.println("\nModifying Assignment Grade");
-        System.out.print("Enter Student ID: ");
-        String studentID = scanner.nextLine();
-
-        // Retrieve the student and their assignments
-        Student student = manager.getStudent(studentID);
-        if (student == null) {
-            System.out.println("Student not found. No student with an ID of " + studentID + " exists.\n");
-            return;
-        } 
-
-        System.out.println("\nAssignments for " + student.getName() + ":");
-        for (Assignment assignment : student.getAssignments()) {
-            System.out.println("  " + assignment.getAssignmentName() + ": " + assignment.getScore() + "/" + assignment.getMaxScore() + " pts");
+    private void manageInstructors() {
+        boolean managing = true;
+        while(managing) {
+            manageInstructorsMenu();
+            int choice = readIntInput("Please select an option (1-3): ");
+            switch(choice) {
+                case 1:
+                    String instructorName = readStringInput("Enter Instructor name: ");
+                    if (manager.getInstructor(instructorName) != null) {
+                        System.out.println("\u001B[31mInstructor " + instructorName + " already exists.\u001B[0m");
+                    } else {
+                        String instructorEmail = readStringInput("Enter Instructor Email: ");
+                        if (!instructorEmail.contains("@") || !instructorEmail.contains(".")) {
+                            System.out.println("\u001B[33mEmail format appears invalid.\u001B[0m");
+                       }
+                        String courseName = readStringInput("Enter Course Name: ");
+                        manager.addInstructor(instructorEmail, instructorName, courseName);
+                        System.out.println("\n\u001B[32m" +instructorName + " assigned to " + courseName + ".\u001B[0m");
+                    }
+                    waitForEnter();
+                    break;
+                case 2:
+                    manager.printInstructors();
+                    waitForEnter();
+                    break;
+                case 3:
+                    managing = false;
+                    break;
+                default:
+                    System.out.println("\n\u001B[31mInvalid choice. Please enter 1, 2, or 3.\u001B[0m");
+                    waitForEnter();
+            }
         }
+        System.out.println("\nReturning to Instructor Menu...");
+    }
 
-        System.out.print("Enter the assignment number to modify: ");
-        int assignmentNumber = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
+    /**
+     * Prints the manage courses menu options.
+     */
+    private void manageCoursesMenu() {
+        System.out.println("\n Manage Courses Menu");
+        System.out.println();
+        System.out.println("   1: Add New Course");
+        System.out.println("   2: Display All Courses");
+        System.out.println("   3: Enroll Student in Course");
+        System.out.println("   4: Back to Main Menu");
+        System.out.println();
+    }
 
-        // Validate the assignment number
-        if (assignmentNumber < 1 || assignmentNumber > student.getAssignments().size()) {
-            System.out.println("Invalid assignment number.");
-            return;
+    /**
+     * Handles the course management menu loop and processes user selections.
+     */
+    private void manageCourses() {
+        boolean managing = true;
+        while(managing) {
+            manageCoursesMenu();
+            int choice = readIntInput("Please select an option (1-4): ");
+            switch(choice) {
+                case 1:
+                    String courseName = readStringInput("Enter Course Name: ");
+                    if (manager.getCourse(courseName) != null) {
+                        System.out.println("\u001B[31mCourse " + courseName + " already exists.\u001B[0m");
+                    } else {
+                        String roomNumber = readStringInput("Enter Room Number: ");
+                        String meetTime = readStringInput("Enter Meeting Time: ");
+                        manager.printInstructorNames();
+                        String instructorName = readStringInput("Enter Instructor Name: ");
+                        if (manager.getInstructor(instructorName) == null) {
+                            System.out.println("\u001B[31mInstructor " + instructorName + " not found.\u001B[0m");
+                            waitForEnter();
+                            break;
+                        }
+                        String schedule = readStringInput("Enter Schedule: ");
+                        manager.addCourse(courseName, roomNumber, meetTime, instructorName, schedule);
+                        System.out.println("\n\u001B[32m" + courseName + " added.\u001B[0m");
+                    }
+                    waitForEnter();
+                    break;
+                case 2:
+                    manager.printCourseNames();
+                    waitForEnter();
+                    break;
+                 case 3:
+                    manager.printStudentIDs();
+                    String studentID = readStringInput("Enter Student ID: ");
+                    Student studentToEnroll = manager.getStudent(studentID);
+                    if (studentToEnroll == null) {
+                        System.out.println("\u001B[31mStudent ID " + studentID + " not found.\u001B[0m");
+                    } else {
+                        manager.printCourseNames();
+                        String courseNamee = readStringInput("Enter Course Name: ");
+                        Course courseToEnroll = manager.getCourse(courseNamee);
+                        if (courseToEnroll == null) {
+                            System.out.println("\u001B[31mCourse " + courseNamee + " not found.\u001B[0m");
+                        } else {
+                            manager.enrollStudent(studentID, courseNamee);
+                            System.out.println("\n\u001B[32m" + studentToEnroll.getName() + " enrolled in " + courseNamee + ".\u001B[0m");
+                        }
+                    }
+                    waitForEnter();
+                    break;
+                case 4:
+                    managing = false;
+                    break;
+                default:
+                    System.out.println("\n\u001B[31mInvalid choice. Please enter 1, 2, 3, or 4.\u001B[0m");
+                    waitForEnter();
+            }
         }
+        System.out.println("\nReturning to Instructor Menu...");
+    }
 
-        Assignment selectedAssignment = student.getAssignments().get(assignmentNumber - 1); // adjust for the 0-based index
-        System.out.println("Selected assignment: " + selectedAssignment.getAssignmentName() + ": " + selectedAssignment.getScore() + "/" + selectedAssignment.getMaxScore() + " pts");
-        System.out.print("Would you like to change the grade? Y/N? ");
-        String changeGrade = scanner.nextLine();
+    /**
+     * Handles data export functionality for instructor.
+     * Currently not implemented.
+     */
+    private void exportData() {
+        System.out.println("\nExport Data (Not Implemented)");
+         // TODO: Implement export logic
+        waitForEnter();
+    }
 
-        if (changeGrade.equalsIgnoreCase("Y")) {
-            System.out.print("Please input new grade 0-100: ");
-            int newGrade = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+    /**
+     * Handles data export functionality for students.
+     * Currently not implemented.
+     */
+    private void exportStudentData() {
+        System.out.println("\nExport Student Data (Not Implemented)");
+        // TODO: Implement export logic
+        waitForEnter();
+    }
 
-            selectedAssignment.setScore(newGrade);
-            System.out.println("Grade updated successfully. Grade is now: " + selectedAssignment.getScore() + "/" + selectedAssignment.getMaxScore());
+    /**
+     * Displays a summary of grades for the specified student.
+     *
+     * @param student The logged in student whose grades should be displayed
+     */
+    private void gradeSummary(Student student) {
+        System.out.println("\nGrade Summary for " + student.getName());
+        List<Assignment> assignments = student.getAssignments();
+
+        if (assignments == null || assignments.isEmpty()) {
+            System.out.println("No assignments found for this student.");
         } else {
-            System.out.println("No changes made. Grade remains: " + selectedAssignment.getScore() + "/" + selectedAssignment.getMaxScore());
-        }
+            int totalEarned = 0;
+            int totalMax = 0;
+            System.out.println("\nAssignments:");
+            for (Assignment assignment : assignments) {
+                assignment.printDetails();
+                totalEarned += assignment.getScore();
+                totalMax += assignment.getMaxScore();
+            }
 
-    //this is a placeholder for the modifyAssignmentGrade method needs to be validated and implemented
-    public void DEVmodifyAssignmentGrade() {
-        System.out.println("\nEnter Student ID: ");
-        // Add logic for managing assignments
-        // For example, adding a new assignment, removing an assignment, or displaying assignment details by student ID
-        String studentID = scanner.nextLine();
+            System.out.println("\nOverall:");
+            if (totalMax > 0) {
+                double percentage = ((double) totalEarned / totalMax) * 100.0;
+                Grade grade = new Grade();
+                String letterGrade = grade.getLetterGrade(new ArrayList<>(assignments));
 
-        Student stu = manager.getStudent(studentID);
-        if (stu == null) {
-            System.out.println("Student not found. No student with an ID of " + studentID + " exists.\n");
-            return;
-        } 
-
-        System.out.println("\nStudent found: " + stu.getName());
-        System.out.println("\nAssignment details:");
-        for (int i = 0; i < stu.getAssignments().size(); i++) {
-            Assignment assignment = stu.getAssignments().get(i);
-            System.out.println((i + 1) + ": " + assignment.getAssignmentName() + ": " + assignment.getScore() + "/" + assignment.getMaxScore() + " pts");
-        }
-
-        System.out.print("\nType an assignment to modify: ");
-        int assignmentChoice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
-
-        // Validate the assignment choice
-        if (assignmentChoice < 1 || assignmentChoice > stu.getAssignments().size()) {
-            System.out.println("Invalid assignment choice.");
-            return;
-        }
-
-        Assignment selectedAssignment = stu.getAssignments().get(assignmentChoice - 1); // adjust for the 0-based index
-        System.out.println("Selected assignment: " + selectedAssignment.getAssignmentName() + ": " + selectedAssignment.getScore() + "/" + selectedAssignment.getMaxScore() + " pts");
-        System.out.print("Would you like to change the grade? Y/N? ");
-        String changeGrade = scanner.nextLine();
-
-        if (changeGrade.equalsIgnoreCase("Y")) {
-            System.out.println("Please input new grade 0-100:");
-            int newGrade = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-
-            selectedAssignment.setScore(newGrade);
-            System.out.println("Grade updated successfully. Grade is now: " + selectedAssignment.getScore() + "/" + selectedAssignment.getMaxScore());
-        } else {
-            System.out.println("No changes made. Grade remains: " + selectedAssignment.getScore() + "/" + selectedAssignment.getMaxScore());
-        }
-    }
-
-    /**
-     * Displays the menu for managing instructors.
-     * Prompts the user to select an action from the available options.
-     */
-    public void manageInstructors() {
-        while (true) {
-            System.out.println("\nManaging Instructors Menu");
-            System.out.println("What action would you like to take?");
-            System.out.println("   1: Add New Instructor");
-            System.out.println("   2: Display All Instructors");
-            System.out.println("   3: Return to Previous Menu");
-            System.out.print("Please select an option: ");
-    
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-    
-            switch (choice) {
-                case 1:
-                    addNewInstructor();
-                    break;
-                case 2:
-                    displayAllInstructors();
-                    break;
-                case 3:
-                    System.out.println("Returning to previous menu...");
-                    return; // Exit the manageInstructors menu
-                default:
-                    System.out.println("Invalid choice. Please try again.");
+                System.out.printf("Total Score: %d / %d%n", totalEarned, totalMax);
+                System.out.printf("Percentage: %.2f%%%n", percentage);
+                System.out.println("Letter Grade: " + letterGrade);
             }
         }
+        waitForEnter();
     }
 
     /**
-     * Adds a new instructor to the system.
-     * Prompts the user for the instructor's name, email, and ID, and adds the instructor to the manager.
-     * If the instructor is added successfully, a confirmation message is displayed.
-     * If the instructor already exists, an error message is displayed.
+     * Allows a student to change their name.
+     *
+     * @param student The logged in student whose name should be changed
      */
-    public void addNewInstructor() {
-        System.out.println("\nAdding New Instructor");
-        System.out.print("Enter Instructor Name: ");
-        String instructorName = scanner.nextLine();
-        System.out.print("Enter Instructor Email: ");
-        String instructorEmail = scanner.nextLine();
-        System.out.print("Enter Instructor ID: ");
-        String instructorID = scanner.nextLine();
-
-        // Add the new instructor to the manager
-        manager.addInstructor(instructorEmail, instructorName, instructorID);
-        System.out.println("Instructor added successfully.");
-    }
-
-    /**
-     * Displays all instructors in the system.
-     * Retrieves the list of instructors from the manager and prints their details to the console.
-     * If no instructors are found, an appropriate message is displayed.
-     */
-    public void displayAllInstructors() {
-        System.out.println("\nDisplaying All Instructors");
-        // Display all instructors in the system
-        manager.printInstructors();
-        System.out.println("End of instructor list.\n");
-    }
-
-    /**
-     * Displays the menu for managing courses.
-     * Prompts the user to select an action from the available options.
-     */
-    public void manageCourses() {
-        while (true) {
-            System.out.println("\nManaging Courses Menu");
-            System.out.println("What action would you like to take?");
-            System.out.println("   1: Add New Course");
-            System.out.println("   2: Display All Courses");
-            System.out.println("   3: Return to Previous Menu");
-            System.out.print("Please select an option: ");
-    
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-    
-            switch (choice) {
-                case 1:
-                    addNewCourse();
-                    break;
-                case 2:
-                    displayAllCourses();
-                    break;
-                case 3:
-                    System.out.println("Returning to previous menu...");
-                    return; // Exit the manageCourses menu
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        }
-    }
-
-    /**
-     * Adds a new course to the system.
-     * Prompts the user for the course name, room number, meeting time, instructor, and schedule,
-     * and adds the course to the manager.
-     * If the course is added successfully, a confirmation message is displayed.
-     * If the course already exists, an error message is displayed.
-     */
-    public void addNewCourse() {
-        System.out.println("\nAdding New Course");
-        System.out.print("Enter Course Name: ");
-        String courseName = scanner.nextLine();
-        System.out.print("Enter Room Number: ");
-        String roomNumber = scanner.nextLine();
-        System.out.print("Enter Meeting Time: ");
-        String meetTime = scanner.nextLine();
-        System.out.print("Enter Instructor Name: ");
-        String instructorName = scanner.nextLine();
-        System.out.print("Enter Schedule: ");
-        String schedule = scanner.nextLine();
-
-        // Add the new course to the manager
-        manager.addCourse(courseName, roomNumber, meetTime, instructorName, schedule);
-        System.out.println("Course added successfully.");
-    }
-
-    /**
-     * Displays all courses in the system.
-     * Retrieves the list of courses from the manager and prints their details to the console.
-     * If no courses are found, an appropriate message is displayed.
-     */
-    public void displayAllCourses() {
-        System.out.println("\nDisplaying All Courses");
-        // Display all courses in the system
-        manager.printCourses();
-        System.out.println("End of course list.\n");
-    }
-
-    /**
-     * Displays the menu for exporting data.
-     * Prompts the user to select an action from the available options.
-     */
-    public void exportData() {
-        System.out.println("\nExporting Data Menu");
-        while (true) {
-            System.out.println("What would you like to export?");
-            System.out.println("   1: Export Student Summary By StudentID");
-            System.out.println("   2: Export All Course Summary");
-            System.out.println("   3: Back to Main Menu");
-            System.out.print("Please select an option: ");
-
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-
-            switch (choice) {
-                case 1:
-                    exportStuGradeSummary();
-                    break;
-                case 2:
-                    exportCourses();
-                    break;
-                case 3:
-                    System.out.println("Returning to main menu...");
-                    return;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        }
-    }
-
-    public void exportCourses() {
-        System.out.println("Exporting course data...");
-        // Add logic for exporting course data
-    }
-    // End of Instructor Menuing
-
-    
-    // Student Menuing
-
-    /**
-     * * Exports the grade summary for a specific student to a text file.
-     * Prompts the user for the student ID, retrieves the student's information
-     * and assignments, and writes the grade summary to a file.
-     * The file is named "<ID>_grade_summary_<name>_<datetime>.txt" and contains the student's
-     * ID, name, and a list of assignments with their scores.
-     * If the student is not found, an error message is displayed.  
-     * * @param studentID The ID of the student whose grade summary is to be exported.
-     * @throws IOException If an error occurs while writing to the file.
-     */
-    public void exportStuGradeSummary() {
-        System.out.println("Enter your Student ID: ");
-        String studentID = scanner.nextLine();
-
-        Student student = manager.getStudent(studentID);
-        if (student == null) {
-            System.out.println("Student not found. No student with an ID of " + studentID + " exists.\n");
-            return;
-        }
-
-        String studentName = student.getName();
-        System.out.println("\nExporting grade summary for " + studentName + "...");
-
-        // Generate the file name with a timestamp
-        String timestamp = FORMATTER.format(LocalDateTime.now());
-        String fileName = studentID + "_grade_summary_" + studentName + "_" + timestamp + ".txt";
-
-        int totalMaxScore = 0;
-        int totalScore = 0;
-
-        // File writing logic
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            writer.write("Student Grade Summary\n");
-            writer.write("  Student ID: " + student.getID() + "\n");
-            writer.write("  Student Name: " + student.getName() + "\n");
-            writer.write("  Assignments:\n");
-            for (Assignment assignment : student.getAssignments()) {
-                writer.write("    " + assignment.getAssignmentName() + ": " + assignment.getScore() + "/" + assignment.getMaxScore() + " pts\n");
-                totalMaxScore += assignment.getMaxScore();
-                totalScore += assignment.getScore();
-            }
-            writer.write("Overall Score: " + totalScore + "/" + totalMaxScore + " pts\n");
-            writer.write("Overall Percentage: " + (totalScore * 100 / totalMaxScore) + "%\n");
-            writer.write("Overall Letter Grade: " + convertPercentToLetter(totalScore * 100 / totalMaxScore) + "\n");
-            // Add the grading scale
-            writer.write("\nGrading Scale:\n");
-            writer.write("  A: 90% and above\n");
-            writer.write("  B: 80% - 89%\n");
-            writer.write("  C: 70% - 79%\n");
-            writer.write("  D: 60% - 69%\n");
-            writer.write("  F: Below 60%\n");
-            writer.write("End of grade summary.");
-            System.out.println("Grade summary successfully written to file: " + fileName);
-        } catch (IOException e) {
-            System.out.println("An error occurred while writing the grade summary to a file.");
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Displays the grade summary for a specific student.
-     * Prompts the user for the student ID, retrieves the student's information
-     * and assignments, and prints the grade summary to the console.
-     * If the student is not found, an error message is displayed.
-     * @param studentID The ID of the student whose grade summary is to be displayed.
-     * @throws IOException If an error occurs while writing to the file.
-     * @throws NumberFormatException If the input cannot be parsed as an integer.
-     */    
-    public void viewGradeSummaryForStu() {
-        System.out.println("Enter your Student ID: ");
-        String studentID = scanner.nextLine();
-
-        Student student = manager.getStudent(studentID);
-        if (student == null) {
-            System.out.println("Student not found. No student with an ID of " + studentID + " exists.\n");
-            return;
-        } 
-
-        int totalMaxScore = 0;
-        int totalScore = 0;
-        System.out.println("\nGrade Summary for " + student.getName() + ":");
-        System.out.println("Student ID: " + student.getID());        
-        System.out.println("\nAssignment details: ");
-        for (int i = 0; i < student.getAssignments().size(); i++) {
-            Assignment assignment = student.getAssignments().get(i);
-            System.out.println("  " + (i + 1) + ": " + assignment.getAssignmentName() + ": " + assignment.getScore() + "/" + assignment.getMaxScore() + " pts");
-            totalMaxScore += assignment.getMaxScore();
-            totalScore += assignment.getScore();
-        }
-        
-        System.out.println("Overall Score: " + totalScore + "/" + totalMaxScore + " pts");
-        System.out.println("Overall Percentage: " + (totalScore * 100 / totalMaxScore) + "%");
-        System.out.println("Overall Letter Grade: " + convertPercentToLetter(totalScore * 100 / totalMaxScore));
-        System.out.println("End of Grade Summary.");        
-    }
-
-    /**
-     * Modifies the name of a specific student.
-     * Prompts the user for the student ID, retrieves the student's information,
-     * and allows the user to change the student's name.
-     * If the student is not found, an error message is displayed.
-     * @param studentID The ID of the student whose name is to be modified.
-     */
-    public void modifyNameForStu() {
-        System.out.println("Enter your Student ID: ");
-        String studentID = scanner.nextLine();
-
-        Student student = manager.getStudent(studentID);
-        if (student == null) {
-            System.out.println("Student not found. No student with an ID of " + studentID + " exists.\n");
-            return;
-        } 
-
+    private void changeStudentName(Student student) {
+        System.out.println("\nModify Name for " + student.getName());
         System.out.println("Current name: " + student.getName());
-        System.out.print("Enter new name: ");
-        String newName = scanner.nextLine();
+        String newName = readStringInput("Enter new name: ");
         student.setName(newName);
-        System.out.println("Name updated successfully. New name: " + student.getName());
+        System.out.println("\nName updated to: " + student.getName());
+        waitForEnter();
     }
 
     /**
-     * Modifies the email of a specific student.
-     * Prompts the user for the student ID, retrieves the student's information,
-     * and allows the user to change the student's email.
-     * If the student is not found, an error message is displayed.
-     * @param studentID The ID of the student whose email is to be modified.
+     * Allows a student to change their email.
+     *
+     * @param student The logged in student whose email should be changed
      */
-    public void modifyEmailForStu() {
-        System.out.println("Enter your Student ID: ");
-        String studentID = scanner.nextLine();
-
-        Student student = manager.getStudent(studentID);
-        if (student == null) {
-            System.out.println("Student not found. No student with an ID of " + studentID + " exists.\n");
-            return;
-        } 
-
+    private void changeStudentEmail(Student student) {
+        System.out.println("\nModify Email for " + student.getName());
         System.out.println("Current email: " + student.getEmail());
-        System.out.print("Enter new email: ");
-        String newEmail = scanner.nextLine();
-        student.setEmail(newEmail);
-        System.out.println("Email updated successfully. New email: " + student.getEmail());
+        String newEmail = readStringInput("Enter new email: ");
+        if (!newEmail.contains("@") || !newEmail.contains(".")) {
+            System.out.println("\u001B[33mEmail format looks invalid.\u001B[0m");
+        } else {
+            student.setEmail(newEmail);
+            System.out.println("\nEmail updated to: " + student.getEmail());
+        }
+        waitForEnter();
     }
 
-    public char convertPercentToLetter(int percent) {
-        if (percent >= 90) {
-            return 'A';
-        } else if (percent >= 80) {
-            return 'B';
-        } else if (percent >= 70) {
-            return 'C';
-        } else if (percent >= 60) {
-            return 'D';
-        } else {
-            return 'F';
+    /**
+     * Reads an integer input from the user with validation.
+     *
+     * @param prompt The prompt to display to the user
+     * @return The validated integer input
+     */
+    private int readIntInput(String prompt) {
+        int input = -1;
+        while (true) {
+            System.out.print(prompt);
+            try {
+                input = scanner.nextInt();
+                scanner.nextLine();
+                return input;
+            } catch (InputMismatchException e) {
+                System.out.println("\u001B[31mError: Invalid input. Please enter a whole number.\u001B[0m");
+                scanner.nextLine();
+            }
         }
+    }
+
+    /**
+     * Reads a string input from the user with validation.
+     *
+     * @param prompt The prompt to display to the user
+     * @return The validated string input
+     */
+    private String readStringInput(String prompt) {
+        String input = "";
+        while (true) {
+             System.out.print(prompt);
+             input = scanner.nextLine().trim();
+            if (!input.isEmpty()) {
+                return input;
+            } else {
+                System.out.println("\u001B[31mError: Input cannot be empty.\u001B[0m");
+            }
+        }
+    }
+
+    /**
+     * Pauses execution until the user presses Enter.
+     */
+    private void waitForEnter() {
+        System.out.print("\nPress Enter to continue...");
+        scanner.nextLine();
     }
 
 }
