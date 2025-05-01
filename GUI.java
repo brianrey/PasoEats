@@ -17,19 +17,19 @@ public class GUI{
     JButton bLoginStudent = new JButton("Student");
 
     // making instructor menu components
-    JPanel pContainer = new JPanel();
-    JPanel pText = new JPanel();
-    JPanel pStudent = new JPanel();
-    JPanel pInstructor = new JPanel();
-    JPanel pAssignment = new JPanel();
-    JPanel pCourses = new JPanel();
-    JPanel pExport = new JPanel();
-    JLabel lText = new JLabel("Please choose one: ");
-    JButton bStudent = new JButton("Manage Students");
-    JButton bInstructor = new JButton("Manage Instructors");
-    JButton bAssignement = new JButton("Manage Assignments");
-    JButton bCourses = new JButton("Manage Courses");
-    JButton bExport = new JButton("Export Data");
+    JPanel pInstructorContainer = new JPanel();
+    JPanel pInstructorText = new JPanel();
+    JPanel pInstructorStudent = new JPanel();
+    JPanel pInstructorInstructor = new JPanel();
+    JPanel pInstructorAssignment = new JPanel();
+    JPanel pInstructorCourses = new JPanel();
+    JPanel pInstructorExport = new JPanel();
+    JLabel lInstructorText = new JLabel("Please choose one: ");
+    JButton bInstructorStudent = new JButton("Manage Students");
+    JButton bInstructorInstructor = new JButton("Manage Instructors");
+    JButton bInstructorAssignement = new JButton("Manage Assignments");
+    JButton bInstructorCourses = new JButton("Manage Courses");
+    JButton bInstructorExport = new JButton("Export Student Data");
 
     // constructor
     public GUI(Manager manager){
@@ -64,55 +64,93 @@ public class GUI{
             Object source = a.getSource();
             if(source == bLoginInstructor){
                 instructorMenu();
-            }
-            else if(source == bLoginStudent){
+                return;
+            } else if(source == bLoginStudent){
                 studentMenu();
+                return;
             }
         }
     }
 
-    // instructor menu & logic
+    // instructor menu
     private void instructorMenu(){
         // adding components to panels
-        pText.add(lText);
-        pStudent.add(bStudent);
-        pInstructor.add(bInstructor);
-        pAssignment.add(bAssignement);
-        pCourses.add(bCourses);
-        pExport.add(bExport);
-        pContainer.add(pText);
-        pContainer.add(pStudent);
-        pContainer.add(pInstructor);
-        pContainer.add(pAssignment);
-        pContainer.add(pCourses);
-        pContainer.add(pExport);
+        pInstructorText.add(lInstructorText);
+        pInstructorStudent.add(bInstructorStudent);
+        pInstructorInstructor.add(bInstructorInstructor);
+        pInstructorAssignment.add(bInstructorAssignement);
+        pInstructorCourses.add(bInstructorCourses);
+        pInstructorExport.add(bInstructorExport);
+        pInstructorContainer.add(pInstructorText);
+        pInstructorContainer.add(pInstructorStudent);
+        pInstructorContainer.add(pInstructorInstructor);
+        pInstructorContainer.add(pInstructorAssignment);
+        pInstructorContainer.add(pInstructorCourses);
+        pInstructorContainer.add(pInstructorExport);
         // tab settings
-        pContainer.setLayout(new GridLayout(0, 1, 5, 5));
-        tabManager.addTab("Instructor Menu", pContainer);
+        pInstructorContainer.setLayout(new GridLayout(0, 1, 5, 5));
+        tabManager.addTab("Instructor Menu", pInstructorContainer);
         frame.pack();
 
         // event handlers
+        InstructorListener instructorListener = new InstructorListener();
+        bInstructorAssignement.addActionListener(instructorListener);
+        bInstructorCourses.addActionListener(instructorListener);
+        bInstructorExport.addActionListener(instructorListener);
+        bInstructorInstructor.addActionListener(instructorListener);
+        bInstructorStudent.addActionListener(instructorListener);
 
+    }
+    // instructor menu event handler
+    private class InstructorListener implements ActionListener{
+        public void actionPerformed(ActionEvent a){
+            Object source = a.getSource();
+            if(source == bInstructorAssignement){
+                manageAssignments();
+            } else if(source == bInstructorCourses){
+                manageCourses();
+            } else if(source == bInstructorExport){
+                exportStudentData();
+            } else if(source == bInstructorInstructor){
+                manageInstructors();
+            } else if(source == bInstructorStudent){
+                manageStudents();
+            }
+        }
     }
 
     // student menu & logic
     private void studentMenu(){
-
+        System.out.println("student menu");
     }
 
+
     // manage student menu & logic
+    private void manageStudents(){
+        System.out.println("managing students...");
+    }
 
     // manage assignment menu & logic
+    private void manageAssignments(){
+        System.out.println("managing assignments...");
+    }
 
     // manage instructors menu & logic
+    private void manageInstructors(){
+        System.out.println("managing instructors...");
+    }
 
     // manage courses menu & logic
+    private void manageCourses(){
+        System.out.println("managing courses...");
+    }
 
 
-
-    // export teacher data 
 
     // export student data 
+    private void exportStudentData(){
+        System.out.println("exporting...");
+    }
 
     // grade summary 
 
