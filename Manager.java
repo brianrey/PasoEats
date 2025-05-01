@@ -1,5 +1,13 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * Manager class that handles students, instructors, and courses.
@@ -239,5 +247,103 @@ public class Manager {
             System.out.println(course.getCourseName());
         }
         System.out.println();
+    }
+
+    /**
+     * Checks if the folder exists, if not creates it, and returns the export folder.
+     * Any expor will be saved in the project folder under the export folder.
+     * 
+     * @return The export folder path
+     */
+    public String getExportFolder() {
+        String exportFolder = "export/";
+        File folder = new File(exportFolder);
+
+        // Create the folder if it doesn't exist
+        if (!folder.exists()) {
+            boolean created = folder.mkdirs();
+            if (created) {
+                System.out.println("Export folder created: " + exportFolder);
+            } else {
+                System.out.println("Failed to create export folder: " + exportFolder);
+            }
+        }
+
+        return exportFolder;
+    }
+
+    /**
+     * Returns the export filename based on the current date and time.
+     * 
+     * @return The export filename
+     */
+    public String getExportFilename() {
+        LocalDateTime currentTime = LocalDateTime.now();
+    String date = currentTime.toLocalDate().toString(); // YYYY-MM-DD
+
+    // Format time as HH:MM:SS
+    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH-mm-ss");
+    String time = currentTime.toLocalTime().format(timeFormatter);
+
+    String filename = "export_" + date + "_" + time + ".txt";
+
+    return filename;
+    }
+
+    /**
+     * Returns the full export file path within the project folder.
+     * 
+     * @return The full export file path
+     */
+    public String getExportFilePath() {
+        return getExportFolder() + getExportFilename();
+    }  
+
+    public void exportInstructorData(Instructor instructor) {
+        // TODO: create export to file
+
+        String courseName = instructor.getCourseName();
+        Course course = getCourse(courseName);
+        if (course == null) {
+            System.out.println("Acceptable course not found for instructor: " + instructor.getName());
+            return;
+        }
+
+        ArrayList<Student> roster = course.getRoster();
+        String filename = getExportFilePath();
+        try (PrintWriter pWriter = new PrintWriter(new FileWriter(filename))) {
+            // Write instructor and course details
+            pWriter.printf("Instructor: %s%n", instructor.getName());
+            pWriter.printf("Course: %s%n", courseName);
+            pWriter.printf("Schedule: %s%n", course.getSchedule());
+            pWriter.printf("Meeting Time: %s%n", course.getMeetTime());
+            pWriter.printf("Room Number: %s%n%n", course.getRoomNumber());
+
+            // Write student grades
+            pWriter.println("Course Grades:");
+            for (Student student : roster) {
+                ArrayList<Assignment> assignments = student.getAssignments();
+                Grade grade = new Grade();
+                String letterGrade = grade.getLetterGrade(assignments);
+
+                pWriter.printf(" Student: %s%n", student.getName());
+                pWriter.printf("  Letter Grade: %s%n", letterGrade);
+            }
+
+            pWriter.print("\nExport Complete.");
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+
+        System.out.println("Instructor: " + instructor.getName() + " data exported to: " + filename);
+    }
+
+
+    public void exportStudentData() {
+        // Export student data to a file
+        String exportFolder = getExportFolder();
+        for (Student student : students) {
+            student.exportData(exportFolder);
+        }
     }
 }

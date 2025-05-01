@@ -138,7 +138,7 @@ public class UserInterface {
                     manageCourses();
                     break;
                 case 5:
-                    exportData();
+                    exportInstructorData();
                     break;
                 case 6:
                     System.out.println("\nLogging out...");
@@ -483,10 +483,37 @@ public class UserInterface {
      * Handles data export functionality for instructor.
      * Currently not implemented.
      */
-    private void exportData() {
-        System.out.println("\nExport Data (Not Implemented)");
-         // TODO: Implement export logic
-        waitForEnter();
+    private void exportInstructorData() {
+        System.out.println("\nExport Data (Not Implemented, In  Progress)");
+        // TODO: TEST export logic
+
+        boolean exportMagement = true;
+        while (exportMagement) {
+            manager.printInstructorNames();
+
+            String instructorName = readStringInput("Please enter an instructor name to export data for (or type \"Exit\"): ");
+            if (instructorName.isEmpty()) {
+                System.out.println("\u001B[31mInstructor name cannot be empty.\u001B[0m");
+                continue;
+            } else if (instructorName.equalsIgnoreCase("Exit")) {
+                System.out.println("\nNo files exported.");
+                break;
+            }
+    
+            Instructor instructor = manager.getInstructor(instructorName);
+            if (instructor == null) {
+                System.out.println("\u001B[31mInstructor " + instructorName + " not found.\u001B[0m");
+                waitForEnter();
+                continue;
+            } else {
+                System.out.println("\n\u001B[32m" + instructorName + " found.\u001B[0m");
+                manager.exportInstructorData(instructor);
+                exportMagement = false;
+                waitForEnter();
+            }
+        }
+
+        System.out.println("\nReturning to Instructor Menu...");
     }
 
     /**
@@ -496,6 +523,12 @@ public class UserInterface {
     private void exportStudentData() {
         System.out.println("\nExport Student Data (Not Implemented)");
         // TODO: Implement export logic
+        // if this option is chosen, the filename is preselected to be "String filePath = this.getExportFolder() + <InstructorName>_export_<datetime>.txt"
+        // the file path is reqested via method on the manager class
+        // the data is colleced from the manager class and written to the text file
+        // the file is closed and a message is printed to the console indicating success or failure
+
+
         waitForEnter();
     }
 
