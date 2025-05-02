@@ -295,13 +295,25 @@ public class Manager {
      * 
      * @return The full export file path
      */
-    public String getExportFilePath() {
+    public String getInstructorExportFilePath() {
         return getExportFolder() + getExportFilename();
-    }  
+    }
 
+    /**
+     * Returns the student export filename based on the student's ID.
+     * 
+     * @return The student export filename
+     */
+    public String getStuExportFilePath(Student student) {
+        return getExportFolder() + student.getID() + "_" + getExportFilename();
+    }
+
+    /**
+     * Exports instructor data to a file. 
+     * 
+     * @param instructor The instructor whose data is to be exported
+     */
     public void exportInstructorData(Instructor instructor) {
-        // TODO: create export to file
-
         String courseName = instructor.getCourseName();
         Course course = getCourse(courseName);
         if (course == null) {
@@ -310,7 +322,7 @@ public class Manager {
         }
 
         ArrayList<Student> roster = course.getRoster();
-        String filename = getExportFilePath();
+        String filename = getInstructorExportFilePath();
         try (PrintWriter pWriter = new PrintWriter(new FileWriter(filename))) {
             // Write instructor and course details
             pWriter.printf("Instructor: %s%n", instructor.getName());
@@ -320,14 +332,15 @@ public class Manager {
             pWriter.printf("Room Number: %s%n%n", course.getRoomNumber());
 
             // Write student grades
-            pWriter.println("Course Grades:");
+            pWriter.println("Course Grade Summary:");
             for (Student student : roster) {
                 ArrayList<Assignment> assignments = student.getAssignments();
                 Grade grade = new Grade();
                 String letterGrade = grade.getLetterGrade(assignments);
 
                 pWriter.printf(" Student: %s%n", student.getName());
-                pWriter.printf("  Letter Grade: %s%n", letterGrade);
+                pWriter.printf(" Letter Grade: %s%n%n", letterGrade);
+                
             }
 
             pWriter.print("\nExport Complete.");
@@ -338,12 +351,46 @@ public class Manager {
         System.out.println("Instructor: " + instructor.getName() + " data exported to: " + filename);
     }
 
-
-    public void exportStudentData() {
-        // Export student data to a file
-        String exportFolder = getExportFolder();
-        for (Student student : students) {
-            student.exportData(exportFolder);
+    /**
+     * Exports a single student's data to a file.
+     */
+    public void exportStudentData(Student student) {        
+        String filename = getStuExportFilePath(student);
+        try (PrintWriter pWriter = new PrintWriter(new FileWriter(filename))) {
+            // Write header
+            pWriter.println("Student Data Export");
+            pWriter.println("Date: " + LocalDate.now());
+            pWriter.println("Time: " + new Date());
+    
+            // Write student details
+            pWriter.println("\nStudent Details:");
+            pWriter.printf("Student ID: %s%n", student.getID());
+            pWriter.printf("Name: %s%n", student.getName());
+            pWriter.printf("Email: %s%n", student.getEmail());
+            pWriter.println("Assignments:");
+    
+            int totalScore = 0;
+            int totalMaxScore = 0;
+            for (Assignment assignment : student.getAssignments()) {
+                pWriter.printf(" - %s: %d/%d%n", assignment.getAssignmentName(), assignment.getScore(), assignment.getMaxScore());
+                totalScore += assignment.getScore();
+                totalMaxScore += assignment.getMaxScore();
+            }
+    
+            if (totalMaxScore > 0) {
+                double percentage = ((double) totalScore / totalMaxScore) * 100.0;
+                pWriter.printf("Total Score: %d/%d (%.2f%%)%n", totalScore, totalMaxScore, percentage);
+                pWriter.printf("Letter Grade: %s%n", new Grade().getLetterGrade(student.getAssignments()));
+            } else {
+                pWriter.println("No assignments found.");
+            }
+    
+            pWriter.print("\nExport Complete.");
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
         }
+    
+        System.out.printf("Student data exported to: %s%n", filename);
     }
+
 }

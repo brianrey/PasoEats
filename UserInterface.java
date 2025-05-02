@@ -188,7 +188,7 @@ public class UserInterface {
                     changeStudentEmail(student);
                     break;
                 case 4:
-                    exportStudentData();
+                    exportStudentData(student);
                     break;
                 case 5:
                     System.out.println("\nLogging out...");
@@ -485,7 +485,6 @@ public class UserInterface {
      */
     private void exportInstructorData() {
         System.out.println("\nExport Data (Not Implemented, In  Progress)");
-        // TODO: TEST export logic
 
         boolean exportMagement = true;
         while (exportMagement) {
@@ -520,15 +519,18 @@ public class UserInterface {
      * Handles data export functionality for students.
      * Currently not implemented.
      */
-    private void exportStudentData() {
-        System.out.println("\nExport Student Data (Not Implemented)");
-        // TODO: Implement export logic
-        // if this option is chosen, the filename is preselected to be "String filePath = this.getExportFolder() + <InstructorName>_export_<datetime>.txt"
-        // the file path is reqested via method on the manager class
-        // the data is colleced from the manager class and written to the text file
-        // the file is closed and a message is printed to the console indicating success or failure
-
-
+    private void exportStudentData(Student student) {
+        System.out.println("\nExport Student Data\n");
+        try {
+            System.out.println("Exporting data for " + student.getName() + "...");
+            manager.exportStudentData(student);
+        }
+        catch (Exception e) {
+            System.out.println("\u001B[31mError exporting student data: " + e.getMessage() + "\u001B[0m");
+            waitForEnter();
+            return;
+        }
+        System.out.println("\nStudent data exported successfully.");
         waitForEnter();
     }
 
