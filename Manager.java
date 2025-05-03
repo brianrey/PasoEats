@@ -342,8 +342,6 @@ public class Manager {
                 pWriter.printf(" Letter Grade: %s%n%n", letterGrade);
                 
             }
-
-            pWriter.print("\nExport Complete.");
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
@@ -384,8 +382,6 @@ public class Manager {
             } else {
                 pWriter.println("No assignments found.");
             }
-    
-            pWriter.print("\nExport Complete.");
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
