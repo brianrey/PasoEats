@@ -412,7 +412,8 @@ public class UserInterface {
         System.out.println("   1: Add New Course");
         System.out.println("   2: Display All Courses");
         System.out.println("   3: Enroll Student in Course");
-        System.out.println("   4: Back to Main Menu");
+        System.out.println("   4: Display Grades for Course");
+        System.out.println("   5: Back to Main Menu");
         System.out.println();
     }
 
@@ -423,7 +424,7 @@ public class UserInterface {
         boolean managing = true;
         while(managing) {
             manageCoursesMenu();
-            int choice = readIntInput("Please select an option (1-4): ");
+            int choice = readIntInput("Please select an option (1-5): ");
             switch(choice) {
                 case 1:
                     String courseName = readStringInput("Enter Course Name: ");
@@ -448,8 +449,8 @@ public class UserInterface {
                 case 2:
                     manager.printCourseNames();
                     waitForEnter();
-                    break;
-                 case 3:
+                    break;                    
+                case 3:
                     manager.printStudentIDs();
                     String studentID = readStringInput("Enter Student ID: ");
                     Student studentToEnroll = manager.getStudent(studentID);
@@ -457,22 +458,39 @@ public class UserInterface {
                         System.out.println("\u001B[31mStudent ID " + studentID + " not found.\u001B[0m");
                     } else {
                         manager.printCourseNames();
-                        String courseNamee = readStringInput("Enter Course Name: ");
-                        Course courseToEnroll = manager.getCourse(courseNamee);
+                        String courseName = readStringInput("Enter Course Name: ");
+                        Course courseToEnroll = manager.getCourse(courseName);
                         if (courseToEnroll == null) {
-                            System.out.println("\u001B[31mCourse " + courseNamee + " not found.\u001B[0m");
+                            System.out.println("\u001B[31mCourse " + courseName + " not found.\u001B[0m");
                         } else {
-                            manager.enrollStudent(studentID, courseNamee);
-                            System.out.println("\n\u001B[32m" + studentToEnroll.getName() + " enrolled in " + courseNamee + ".\u001B[0m");
+                            manager.enrollStudent(studentID, courseName);
+                            System.out.println("\n\u001B[32m" + studentToEnroll.getName() + " enrolled in " + courseName + ".\u001B[0m");
                         }
                     }
                     waitForEnter();
                     break;
                 case 4:
+                    manager.printCourseNames();
+                    String courseNameForGrades = readStringInput("Enter Course Name to view grades: ");
+                    Course courseForGrades = manager.getCourse(courseNameForGrades);
+                    if (courseForGrades == null) {
+                        System.out.println("\u001B[31mCourse " + courseNameForGrades + " not found.\u001B[0m");
+                    } else {
+                        System.out.println("\nGrades for " + courseNameForGrades + ":");
+                        for (Student student : courseForGrades.getRoster()) {
+                            ArrayList<Assignment> assignments = student.getAssignments();
+                            Grade grade = new Grade();
+                            String letterGrade = grade.getLetterGrade(assignments);
+                            System.out.printf("Student: %s, Letter Grade: %s%n", student.getName(), letterGrade);
+                        }
+                    }
+                    waitForEnter();
+                    break;                    
+                case 5: // Back to Main Menu
                     managing = false;
                     break;
                 default:
-                    System.out.println("\n\u001B[31mInvalid choice. Please enter 1, 2, 3, or 4.\u001B[0m");
+                    System.out.println("\n\u001B[31mInvalid choice. Please enter a number between 1 and 5.\u001B[0m");
                     waitForEnter();
             }
         }
