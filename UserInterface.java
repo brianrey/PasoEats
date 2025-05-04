@@ -138,7 +138,7 @@ public class UserInterface {
                     manageCourses();
                     break;
                 case 5:
-                    exportData();
+                    exportInstructorData();
                     break;
                 case 6:
                     System.out.println("\nLogging out...");
@@ -188,7 +188,7 @@ public class UserInterface {
                     changeStudentEmail(student);
                     break;
                 case 4:
-                    exportStudentData();
+                    exportStudentData(student);
                     break;
                 case 5:
                     System.out.println("\nLogging out...");
@@ -412,7 +412,8 @@ public class UserInterface {
         System.out.println("   1: Add New Course");
         System.out.println("   2: Display All Courses");
         System.out.println("   3: Enroll Student in Course");
-        System.out.println("   4: Back to Main Menu");
+        System.out.println("   4: Display Grades for Course");
+        System.out.println("   5: Back to Main Menu");
         System.out.println();
     }
 
@@ -423,7 +424,7 @@ public class UserInterface {
         boolean managing = true;
         while(managing) {
             manageCoursesMenu();
-            int choice = readIntInput("Please select an option (1-4): ");
+            int choice = readIntInput("Please select an option (1-5): ");
             switch(choice) {
                 case 1:
                     String courseName = readStringInput("Enter Course Name: ");
@@ -449,7 +450,7 @@ public class UserInterface {
                     manager.printCourseNames();
                     waitForEnter();
                     break;
-                 case 3:
+                case 3:
                     manager.printStudentIDs();
                     String studentID = readStringInput("Enter Student ID: ");
                     Student studentToEnroll = manager.getStudent(studentID);
@@ -457,22 +458,39 @@ public class UserInterface {
                         System.out.println("\u001B[31mStudent ID " + studentID + " not found.\u001B[0m");
                     } else {
                         manager.printCourseNames();
-                        String courseNamee = readStringInput("Enter Course Name: ");
-                        Course courseToEnroll = manager.getCourse(courseNamee);
+                        courseName = readStringInput("Enter Course Name: ");
+                        Course courseToEnroll = manager.getCourse(courseName);
                         if (courseToEnroll == null) {
-                            System.out.println("\u001B[31mCourse " + courseNamee + " not found.\u001B[0m");
+                            System.out.println("\u001B[31mCourse " + courseName + " not found.\u001B[0m");
                         } else {
-                            manager.enrollStudent(studentID, courseNamee);
-                            System.out.println("\n\u001B[32m" + studentToEnroll.getName() + " enrolled in " + courseNamee + ".\u001B[0m");
+                            manager.enrollStudent(studentID, courseName);
+                            System.out.println("\n\u001B[32m" + studentToEnroll.getName() + " enrolled in " + courseName + ".\u001B[0m");
                         }
                     }
                     waitForEnter();
                     break;
                 case 4:
+                    manager.printCourseNames();
+                    String courseNameForGrades = readStringInput("Enter Course Name to view grades: ");
+                    Course courseForGrades = manager.getCourse(courseNameForGrades);
+                    if (courseForGrades == null) {
+                        System.out.println("\u001B[31mCourse " + courseNameForGrades + " not found.\u001B[0m");
+                    } else {
+                        System.out.println("\nGrades for " + courseNameForGrades + ":");
+                        for (Student student : courseForGrades.getRoster()) {
+                            ArrayList<Assignment> assignments = student.getAssignments();
+                            Grade grade = new Grade();
+                            String letterGrade = grade.getLetterGrade(assignments);
+                            System.out.printf("Student: %s, Letter Grade: %s%n", student.getName(), letterGrade);
+                        }
+                    }
+                    waitForEnter();
+                    break;                    
+                case 5: // Back to Main Menu
                     managing = false;
                     break;
                 default:
-                    System.out.println("\n\u001B[31mInvalid choice. Please enter 1, 2, 3, or 4.\u001B[0m");
+                    System.out.println("\n\u001B[31mInvalid choice. Please enter a number between 1 and 5.\u001B[0m");
                     waitForEnter();
             }
         }
@@ -483,19 +501,54 @@ public class UserInterface {
      * Handles data export functionality for instructor.
      * Currently not implemented.
      */
-    private void exportData() {
-        System.out.println("\nExport Data (Not Implemented)");
-         // TODO: Implement export logic
-        waitForEnter();
+    private void exportInstructorData() {
+        System.out.println("\nExport Data (Not Implemented, In  Progress)");
+
+        boolean exportMagement = true;
+        while (exportMagement) {
+            manager.printInstructorNames();
+
+            String instructorName = readStringInput("Please enter an instructor name to export data for (or type \"Exit\"): ");
+            if (instructorName.isEmpty()) {
+                System.out.println("\u001B[31mInstructor name cannot be empty.\u001B[0m");
+                continue;
+            } else if (instructorName.equalsIgnoreCase("Exit")) {
+                System.out.println("\nNo files exported.");
+                break;
+            }
+    
+            Instructor instructor = manager.getInstructor(instructorName);
+            if (instructor == null) {
+                System.out.println("\u001B[31mInstructor " + instructorName + " not found.\u001B[0m");
+                waitForEnter();
+                continue;
+            } else {
+                System.out.println("\n\u001B[32m" + instructorName + " found.\u001B[0m");
+                manager.exportInstructorData(instructor);
+                exportMagement = false;
+                waitForEnter();
+            }
+        }
+
+        System.out.println("\nReturning to Instructor Menu...");
     }
 
     /**
      * Handles data export functionality for students.
      * Currently not implemented.
      */
-    private void exportStudentData() {
-        System.out.println("\nExport Student Data (Not Implemented)");
-        // TODO: Implement export logic
+    private void exportStudentData(Student student) {
+        System.out.println("\nExport Student Data\n");
+        try {
+            System.out.println("Exporting data for " + student.getName() + "...");
+            manager.exportStudentData(student);
+        }
+        catch (Exception e) {
+            System.out.println("\u001B[31mError exporting student data: " + e.getMessage() + "\u001B[0m");
+            waitForEnter();
+            return;
+        }
+        System.out.println("\nStudent data exported successfully.");
         waitForEnter();
     }
 
