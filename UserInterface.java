@@ -449,7 +449,7 @@ public class UserInterface {
                 case 2:
                     manager.printCourseNames();
                     waitForEnter();
-                    break;                    
+                    break;
                 case 3:
                     manager.printStudentIDs();
                     String studentID = readStringInput("Enter Student ID: ");
@@ -458,7 +458,7 @@ public class UserInterface {
                         System.out.println("\u001B[31mStudent ID " + studentID + " not found.\u001B[0m");
                     } else {
                         manager.printCourseNames();
-                        String courseName = readStringInput("Enter Course Name: ");
+                        courseName = readStringInput("Enter Course Name: ");
                         Course courseToEnroll = manager.getCourse(courseName);
                         if (courseToEnroll == null) {
                             System.out.println("\u001B[31mCourse " + courseName + " not found.\u001B[0m");
