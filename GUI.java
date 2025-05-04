@@ -215,13 +215,13 @@ public class GUI{
         public void actionPerformed(ActionEvent a){
             Object source = a.getSource();
             if(source == bStudentGradeSum){
-                System.out.println("grade sum");
+                gradeSummary();;
             }
             else if(source == bStudentModName){
-                System.out.println("mod name");
+                changeStudentName();
             }
             else if(source == bStudentModEmail){
-                System.out.println("mod email");
+                changeStudentEmail();;
             }
             else if(source == bStudentExport){
                 exportStudentData();
@@ -256,9 +256,13 @@ public class GUI{
 
 
     // grade summary 
-
+    private void gradeSummary(){
+        System.out.println("student grade summary...");
+    }
     // change student name 
-
+    private void changeStudentName(){
+        System.out.println("change student name...");
+    }
     // change student email
     private void changeStudentEmail(){
         System.out.println("change student email...");
