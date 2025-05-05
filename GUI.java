@@ -35,7 +35,7 @@ public class GUI{
     JLabel lStudentLoginText = new JLabel("Please Enter Your Student ID: ");
     JTextField tfStudentLogin = new JTextField();
     JButton bStudentLoginLogin = new JButton("Login");
-    JButton bStudentLoginClose = new JButton("Close");
+    JButton bStudentLoginClose = new JButton("Close Tab");
 
     // making student menu components
     JPanel pStudentContainer = new JPanel();
@@ -46,6 +46,31 @@ public class GUI{
     JButton bStudentModEmail = new JButton("Modify My Email");
     JButton bStudentExport = new JButton("Export Data");
     JButton bStudentClose = new JButton("Close Tab");
+    
+    // making manage student menu components
+    JPanel pManageStudentContainer = new JPanel();
+    JPanel pManageStudentText = new JPanel();
+    JLabel lManageStudentText = new JLabel("Please Choose One: ");
+    JButton bManageStudentAdd = new JButton("Add New Student");
+    JButton bManageStudentDisplay = new JButton("Display All Students");
+    JButton bManageStudentClose = new JButton("Close Tab");
+
+    // making add student menu components
+    JPanel pAddStudentContainer = new JPanel();
+    JPanel pAddStudentText = new JPanel();
+    JPanel pAddStudentName = new JPanel();
+    JPanel pAddStudentID = new JPanel();
+    JPanel pAddStudentEmail = new JPanel();
+    JPanel pAddStudentButtons = new JPanel();
+    JLabel lAddStudentText = new JLabel("Enter Student Information: ");
+    JLabel lAddStudentName = new JLabel("Student Name: ");
+    JLabel lAddStudentID = new JLabel("Student ID: ");
+    JLabel lAddStudentEmail = new JLabel("Student Email: ");
+    JTextField tfAddStudentName = new JTextField(null, 15);
+    JTextField tfAddStudentID = new JTextField(null, 15);
+    JTextField tfAddStudentEmail = new JTextField(null, 15);
+    JButton bAddStudentSumbit = new JButton("Sumbit");
+    JButton bAddStudentClose = new JButton("Close Tab");
 
 
     // constructor
@@ -74,10 +99,13 @@ public class GUI{
         tabManager.addTab("Login", pLoginContainer);
 
         // frame settings
+        pLoginContainer.setSize(250, 250);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
         frame.add(tabManager);
-        frame.setVisible(true);
         frame.pack();
+        frame.setSize(300, 300);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
 
         // event handler implement
         LoginListener loginListener = new LoginListener();
@@ -87,6 +115,7 @@ public class GUI{
     }
     // login event handler
     private class LoginListener implements ActionListener{
+        @Override
         public void actionPerformed(ActionEvent a){
             Object source = a.getSource();
             if(source == bLoginInstructor){
@@ -114,7 +143,7 @@ public class GUI{
         // tab settings
         pInstructorContainer.setLayout(new GridLayout(7, 1, 10, 5));
         tabManager.addTab("Instructor Menu", pInstructorContainer);
-        frame.pack();
+        tabManager.setSelectedComponent(pInstructorContainer);
 
         // event handlers
         InstructorListener instructorListener = new InstructorListener();
@@ -128,18 +157,19 @@ public class GUI{
     }
     // instructor menu event handler
     private class InstructorListener implements ActionListener{
+        @Override
         public void actionPerformed(ActionEvent a){
             Object source = a.getSource();
             if(source == bInstructorAssignement){
-                manageAssignments();
+                manageAssignmentsMenu();
             } else if(source == bInstructorCourses){
-                manageCourses();
+                manageCoursesMenu();
             } else if(source == bInstructorExport){
                 exportStudentData();
             } else if(source == bInstructorInstructor){
-                manageInstructors();
+                manageInstructorsMenu();
             } else if(source == bInstructorStudent){
-                manageStudents();
+                manageStudentsMenu();
             } else if(source == bInstructorClose){
                 closeTab();
             }
@@ -158,7 +188,7 @@ public class GUI{
         //tab settings
         pStudentLoginContainer.setLayout(new GridLayout(4, 1, 5, 5));
         tabManager.addTab("Student Login", pStudentLoginContainer);
-        frame.pack();
+        tabManager.setSelectedComponent(pStudentLoginContainer);
 
         // event handlers
         StudentLoginListener studentLoginListener = new StudentLoginListener();
@@ -167,6 +197,7 @@ public class GUI{
     }
     // student login logic
     private class StudentLoginListener implements ActionListener{
+        @Override
         public void actionPerformed(ActionEvent a){
             Object source = a.getSource();
             if(source == bStudentLoginLogin){
@@ -200,7 +231,7 @@ public class GUI{
         // tab settings
         pStudentContainer.setLayout(new GridLayout(6, 1, 5, 5));
         tabManager.addTab("Student Menu", pStudentContainer);
-        frame.pack();
+        tabManager.setSelectedComponent(pStudentContainer);
 
         //event handlers
         StudentListener studentListener = new StudentListener();
@@ -212,6 +243,7 @@ public class GUI{
     }
     // student menu event handler
     private class StudentListener implements ActionListener{
+        @Override
         public void actionPerformed(ActionEvent a){
             Object source = a.getSource();
             if(source == bStudentGradeSum){
@@ -232,24 +264,119 @@ public class GUI{
         }
     }
 
+    // manage student menu 
+    private void manageStudentsMenu(){
+        // adding components to panels
+        pManageStudentText.add(lManageStudentText);
+        pManageStudentContainer.add(pManageStudentText);
+        pManageStudentContainer.add(bManageStudentAdd);
+        pManageStudentContainer.add(bManageStudentDisplay);
+        pManageStudentContainer.add(bManageStudentClose);
 
-    // manage student menu & logic
-    private void manageStudents(){
-        System.out.println("managing students...");
+        // tab settings
+        pManageStudentContainer.setLayout(new GridLayout(4, 1, 5, 5));
+        tabManager.addTab("Manage Students Menu", pManageStudentContainer);
+        tabManager.setSelectedComponent(pManageStudentContainer);
+
+        // event handlers
+        ManageStudentsListener manageStudentsListener = new ManageStudentsListener();
+        bManageStudentAdd.addActionListener(manageStudentsListener);
+        bManageStudentDisplay.addActionListener(manageStudentsListener);
+        bManageStudentClose.addActionListener(manageStudentsListener);
+    }
+    // manage student menu event handler
+    private class ManageStudentsListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent a){
+            Object source = a.getSource();
+            if(source == bManageStudentAdd){
+                addStudentMenu();
+            }
+            else if(source == bManageStudentDisplay){
+                displayStudents();
+            }
+            else if(source == bManageStudentClose){
+                closeTab();
+            }
+        }
+    }
+
+    // add student menu
+    private void addStudentMenu(){
+        // adding components to panels
+        pAddStudentText.add(lAddStudentText);
+        pAddStudentName.add(lAddStudentName);
+        pAddStudentName.add(tfAddStudentName);
+        pAddStudentEmail.add(lAddStudentEmail);
+        pAddStudentEmail.add(tfAddStudentEmail);
+        pAddStudentID.add(lAddStudentID);
+        pAddStudentID.add(tfAddStudentID);
+        pAddStudentButtons.add(bAddStudentSumbit);
+        pAddStudentButtons.add(bAddStudentClose);
+        // putting in container panel
+        pAddStudentContainer.add(pAddStudentText);
+        pAddStudentContainer.add(pAddStudentName);
+        pAddStudentContainer.add(pAddStudentEmail);
+        pAddStudentContainer.add(pAddStudentID);
+        pAddStudentContainer.add(pAddStudentButtons);
+
+        // tab settings
+        pAddStudentContainer.setLayout(new GridLayout(5, 1, 5, 5));
+        tabManager.addTab("Add Student Menu", pAddStudentContainer);
+        tabManager.setSelectedComponent(pAddStudentContainer);
+
+        // event handlers
+        AddStudentListener addStudentListener = new AddStudentListener();
+        bAddStudentSumbit.addActionListener(addStudentListener);
+        bAddStudentClose.addActionListener(addStudentListener);
+    }
+    // add student menu logic
+    private class AddStudentListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent a) {
+            Object source = a.getSource();
+            if(source == bAddStudentSumbit){
+                String name = tfAddStudentName.getText();
+                String email = tfAddStudentEmail.getText();
+                String ID = tfAddStudentID.getText();
+                // validates entrys and adds new student
+                if(name.isEmpty() || email.isEmpty() || ID.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please Fill All Fields", "Null Text Field(s)", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(manager.getStudent(ID) != null){
+                    JOptionPane.showMessageDialog(null, "Student ID " + ID + " Already Exists", "Invalid ID Entry", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(!email.contains("@") || !email.contains(".")){
+                    JOptionPane.showMessageDialog(null, "Email Format Looks Invalid", "Invalid Email Entry", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    manager.addStudent(email, name, ID);
+                    JOptionPane.showMessageDialog(null, "Student " + name + " Successfully Added", "Student Added", JOptionPane.DEFAULT_OPTION);
+                }
+            }
+            else if(source == bAddStudentClose){
+                closeTab();
+            }
+        }
+    }
+
+    // display students
+    private void displayStudents(){
+
     }
 
     // manage assignment menu & logic
-    private void manageAssignments(){
+    private void manageAssignmentsMenu(){
         System.out.println("managing assignments...");
     }
 
     // manage instructors menu & logic
-    private void manageInstructors(){
+    private void manageInstructorsMenu(){
         System.out.println("managing instructors...");
     }
 
     // manage courses menu & logic
-    private void manageCourses(){
+    private void manageCoursesMenu(){
         System.out.println("managing courses...");
     }
 
