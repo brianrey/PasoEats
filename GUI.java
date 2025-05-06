@@ -52,7 +52,7 @@ public class GUI{
     JPanel pManageStudentText = new JPanel();
     JLabel lManageStudentText = new JLabel("Please Choose One: ");
     JButton bManageStudentAdd = new JButton("Add New Student");
-    JButton bManageStudentDisplay = new JButton("Display All Students");
+    JButton bManageStudentDisplay = new JButton("Display Student");
     JButton bManageStudentClose = new JButton("Close Tab");
 
     // making add student menu components
@@ -69,9 +69,70 @@ public class GUI{
     JTextField tfAddStudentName = new JTextField(null, 15);
     JTextField tfAddStudentID = new JTextField(null, 15);
     JTextField tfAddStudentEmail = new JTextField(null, 15);
-    JButton bAddStudentSumbit = new JButton("Sumbit");
+    JButton bAddStudentSumbit = new JButton("Submit");
     JButton bAddStudentClose = new JButton("Close Tab");
 
+    // making display student components
+    JPanel pDisplayStudentContainer = new JPanel();
+    JPanel pDisplayStudent = new JPanel();
+    JTextField tfDisplayStudent = new JTextField(null, 20);
+    JLabel lDisplayStudentText = new JLabel("Enter An ID To Retrieve: ");
+    JLabel lDisplayStudentNameLabel = new JLabel("Student's Name: ");
+    JLabel lDisplayStudentName = new JLabel();
+    JLabel lDisplayStudentIDLabel = new JLabel("Student's ID: ");
+    JLabel lDisplayStudentID = new JLabel();
+    JLabel lDisplayStudentEmailLabel = new JLabel("Student's Email: ");
+    JLabel lDisplayStudentEmail = new JLabel();
+    JButton bDisplayStudentSubmit = new JButton("Submit");
+    JButton bDisplayStudentClose = new JButton("Close Tab");
+
+    // making manage assignments components
+    JPanel pManageAssignmentsContainer = new JPanel();
+    JPanel pManageAssignmentsText = new JPanel();
+    JLabel lManageAssignmentsText = new JLabel("Please Choose One: ");
+    JButton bManageAssignmentsAdd = new JButton("Add Assignment to Course");
+    JButton bManageAssignmentsViewGrade = new JButton("View Student's Grades");
+    JButton bManageAssignmentsModGrade = new JButton("Modify Assignment Grade");
+    JButton bManageAssignmentsClose = new JButton("Close Tab");
+
+    // making manage instructors components
+    JPanel pManageInstructorsContainer = new JPanel();
+    JPanel pManageInstructorsText = new JPanel();
+    JLabel lManageInstructorsText = new JLabel("Please Choose One: ");
+    JButton bManageInstructorsAdd = new JButton("Add New Instructor");
+    JButton bManageInstructorsDisplay = new JButton("Display Instructor");
+    JButton bManageInstructorsClose = new JButton("Close Tab");
+
+    // making add instructor menu components
+    JPanel pAddInstructorContainer = new JPanel();
+    JPanel pAddInstructorText = new JPanel();
+    JPanel pAddInstructorName = new JPanel();
+    JPanel pAddInstructorCourse = new JPanel();
+    JPanel pAddInstructorEmail = new JPanel();
+    JPanel pAddInstructorButtons = new JPanel();
+    JLabel lAddInstructorText = new JLabel("Enter Instructor Information: ");
+    JLabel lAddInstructorName = new JLabel("Instructor Name: ");
+    JLabel lAddInstructorCourse = new JLabel("Instructor Course: ");
+    JLabel lAddInstructorEmail = new JLabel("Instructor Email: ");
+    JTextField tfAddInstructorName = new JTextField(null, 15);
+    JTextField tfAddInstructorCourse = new JTextField(null, 15);
+    JTextField tfAddInstructorEmail = new JTextField(null, 15);
+    JButton bAddInstructorSumbit = new JButton("Submit");
+    JButton bAddInstructorClose = new JButton("Close Tab");
+
+    // making display instructor components
+    JPanel pDisplayInstructorContainer = new JPanel();
+    JPanel pDisplayInstructor = new JPanel();
+    JTextField tfDisplayInstructor = new JTextField(null, 20);
+    JLabel lDisplayInstructorText = new JLabel("Enter A Name To Retrieve: ");
+    JLabel lDisplayInstructorNameLabel = new JLabel("Instructor's Name: ");
+    JLabel lDisplayInstructorName = new JLabel();
+    JLabel lDisplayInstructorCourseLabel = new JLabel("Instructor's Course: ");
+    JLabel lDisplayInstructorCourse = new JLabel();
+    JLabel lDisplayInstructorEmailLabel = new JLabel("Instructor's Email: ");
+    JLabel lDisplayInstructorEmail = new JLabel();
+    JButton bDisplayInstructorSubmit = new JButton("Submit");
+    JButton bDisplayInstructorClose = new JButton("Close Tab");
 
     // constructor
     public GUI(Manager manager){
@@ -103,7 +164,7 @@ public class GUI{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
         frame.add(tabManager);
         frame.pack();
-        frame.setSize(300, 300);
+        frame.setSize(400, 400);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
@@ -293,7 +354,7 @@ public class GUI{
                 addStudentMenu();
             }
             else if(source == bManageStudentDisplay){
-                displayStudents();
+                displayStudent();
             }
             else if(source == bManageStudentClose){
                 closeTab();
@@ -361,18 +422,242 @@ public class GUI{
     }
 
     // display students
-    private void displayStudents(){
+    private void displayStudent(){
+        // adding components to panels
+        pDisplayStudentContainer.add(lDisplayStudentText);
+        pDisplayStudentContainer.add(tfDisplayStudent);
+        pDisplayStudentContainer.add(lDisplayStudentNameLabel);
+        pDisplayStudentContainer.add(lDisplayStudentName);
+        pDisplayStudentContainer.add(lDisplayStudentIDLabel);
+        pDisplayStudentContainer.add(lDisplayStudentID);
+        pDisplayStudentContainer.add(lDisplayStudentEmailLabel);
+        pDisplayStudentContainer.add(lDisplayStudentEmail);
+        pDisplayStudentContainer.add(bDisplayStudentSubmit);
+        pDisplayStudentContainer.add(bDisplayStudentClose);
 
+        // tab settings
+        pDisplayStudentContainer.setLayout(new GridLayout(5,2,5,5));
+        tabManager.addTab("Display Student", pDisplayStudentContainer);
+        tabManager.setSelectedComponent(pDisplayStudentContainer);
+
+        // event handlers
+        DisplayStudentListener displayStudentListener = new DisplayStudentListener();
+        bDisplayStudentSubmit.addActionListener(displayStudentListener);
+        bDisplayStudentClose.addActionListener(displayStudentListener);
+    }
+    // display students event listener
+    private class DisplayStudentListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent a) {
+           Object source = a.getSource();
+           if(source == bDisplayStudentSubmit){
+                String ID = tfDisplayStudent.getText();
+                // verifying input and displaying student
+                if(ID.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please Fill All Fields", "Null Text Field(s)", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(manager.getStudent(ID) == null){
+                    JOptionPane.showMessageDialog(null, "Student At ID " + ID + " Does Not Exist", "Nonexistant Student", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    Student student = manager.getStudent(ID);
+                    lDisplayStudentName.setText(student.getName());
+                    lDisplayStudentID.setText(student.getID());
+                    lDisplayStudentEmail.setText(student.getEmail());
+                }
+           }
+           else if(source == bDisplayStudentClose){
+                closeTab();
+           }
+        }
     }
 
-    // manage assignment menu & logic
+    // manage assignment menu
     private void manageAssignmentsMenu(){
-        System.out.println("managing assignments...");
+        // adding components to panels
+        pManageAssignmentsText.add(lManageAssignmentsText);
+        pManageAssignmentsContainer.add(pManageAssignmentsText);
+        pManageAssignmentsContainer.add(bManageAssignmentsAdd);
+        pManageAssignmentsContainer.add(bManageAssignmentsViewGrade);
+        pManageAssignmentsContainer.add(bManageAssignmentsModGrade);
+        pManageAssignmentsContainer.add(bManageAssignmentsClose);
+
+        // tab settings
+        pManageAssignmentsContainer.setLayout(new GridLayout(5, 1, 5, 5));
+        tabManager.addTab("Manage Assignments", pManageAssignmentsContainer);
+        tabManager.setSelectedComponent(pManageAssignmentsContainer);
+
+        // event handlers
+        ManageAssignmentsListener manageAssignmentsListener = new ManageAssignmentsListener();
+        bManageAssignmentsAdd.addActionListener(manageAssignmentsListener);
+        bManageAssignmentsViewGrade.addActionListener(manageAssignmentsListener);
+        bManageAssignmentsModGrade.addActionListener(manageAssignmentsListener);
+        bManageAssignmentsClose.addActionListener(manageAssignmentsListener);
+    }
+    // manage assignment event listener
+    private class ManageAssignmentsListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent a) {
+            Object source = a.getSource();
+            if(source == bManageAssignmentsAdd){
+                System.out.println("adding assignments...");
+            }
+            else if(source == bManageAssignmentsViewGrade){
+                System.out.println("viewing assignments...");
+            }
+            else if(source == bManageAssignmentsModGrade){
+                System.out.println("modifying assignments...");
+            }
+            else if(source == bManageAssignmentsClose){
+                closeTab();
+            }
+        }
     }
 
     // manage instructors menu & logic
     private void manageInstructorsMenu(){
-        System.out.println("managing instructors...");
+        // adding components to panels
+        pManageInstructorsText.add(lManageInstructorsText);
+        pManageInstructorsContainer.add(pManageInstructorsText);
+        pManageInstructorsContainer.add(bManageInstructorsAdd);
+        pManageInstructorsContainer.add(bManageInstructorsDisplay);
+        pManageInstructorsContainer.add(bManageInstructorsClose);
+
+        // tab settings
+        pManageInstructorsContainer.setLayout(new GridLayout(4, 1, 5, 5));
+        tabManager.addTab("Manage Instructors Menu", pManageInstructorsContainer);
+        tabManager.setSelectedComponent(pManageInstructorsContainer);
+
+        // event handlers
+        ManageInstructorsListener manageInstructorsListener = new ManageInstructorsListener();
+        bManageInstructorsAdd.addActionListener(manageInstructorsListener);
+        bManageInstructorsDisplay.addActionListener(manageInstructorsListener);
+        bManageInstructorsClose.addActionListener(manageInstructorsListener);
+    }
+    private class ManageInstructorsListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent a) {
+            Object source = a.getSource();
+            if(source == bManageInstructorsAdd){
+                addInstructorMenu();
+            }
+            else if(source == bManageInstructorsDisplay){
+                displayInstructor();
+            }
+            else if(source == bManageInstructorsClose){
+                closeTab();
+            }
+        }        
+    }
+
+    // add Instructor menu
+    private void addInstructorMenu(){
+        // adding components to panels
+        pAddInstructorText.add(lAddInstructorText);
+        pAddInstructorName.add(lAddInstructorName);
+        pAddInstructorName.add(tfAddInstructorName);
+        pAddInstructorEmail.add(lAddInstructorEmail);
+        pAddInstructorEmail.add(tfAddInstructorEmail);
+        pAddInstructorCourse.add(lAddInstructorCourse);
+        pAddInstructorCourse.add(tfAddInstructorCourse);
+        pAddInstructorButtons.add(bAddInstructorSumbit);
+        pAddInstructorButtons.add(bAddInstructorClose);
+        // putting in container panel
+        pAddInstructorContainer.add(pAddInstructorText);
+        pAddInstructorContainer.add(pAddInstructorName);
+        pAddInstructorContainer.add(pAddInstructorEmail);
+        pAddInstructorContainer.add(pAddInstructorCourse);
+        pAddInstructorContainer.add(pAddInstructorButtons);
+
+        // tab settings
+        pAddInstructorContainer.setLayout(new GridLayout(5, 1, 5, 5));
+        tabManager.addTab("Add Instructor Menu", pAddInstructorContainer);
+        tabManager.setSelectedComponent(pAddInstructorContainer);
+
+        // event handlers
+        AddInstructorListener addInstructorListener = new AddInstructorListener();
+        bAddInstructorSumbit.addActionListener(addInstructorListener);
+        bAddInstructorClose.addActionListener(addInstructorListener);
+    }
+    // add Instructor menu logic
+    private class AddInstructorListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent a) {
+            Object source = a.getSource();
+            if(source == bAddInstructorSumbit){
+                String name = tfAddInstructorName.getText();
+                String email = tfAddInstructorEmail.getText();
+                String course = tfAddInstructorCourse.getText();
+                // validates entrys and adds new student
+                if(name.isEmpty() || email.isEmpty() || course.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please Fill All Fields", "Null Text Field(s)", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(manager.getInstructor(name) != null){
+                    JOptionPane.showMessageDialog(null, "Instructor Named " + name + " Already Exists", "Invalid Entry", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(!email.contains("@") || !email.contains(".")){
+                    JOptionPane.showMessageDialog(null, "Email Format Looks Invalid", "Invalid Entry", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    manager.addInstructor(email, name, course);
+                    JOptionPane.showMessageDialog(null, "Instructor " + name + " Successfully Added", "Instructor Added", JOptionPane.DEFAULT_OPTION);
+                }
+            }
+            else if(source == bAddInstructorClose){
+                closeTab();
+            }
+        }
+    }
+
+    // display instructor
+    private void displayInstructor(){
+        // adding components to panels
+        pDisplayInstructorContainer.add(lDisplayInstructorText);
+        pDisplayInstructorContainer.add(tfDisplayInstructor);
+        pDisplayInstructorContainer.add(lDisplayInstructorNameLabel);
+        pDisplayInstructorContainer.add(lDisplayInstructorName);
+        pDisplayInstructorContainer.add(lDisplayInstructorCourseLabel);
+        pDisplayInstructorContainer.add(lDisplayInstructorCourse);
+        pDisplayInstructorContainer.add(lDisplayInstructorEmailLabel);
+        pDisplayInstructorContainer.add(lDisplayInstructorEmail);
+        pDisplayInstructorContainer.add(bDisplayInstructorSubmit);
+        pDisplayInstructorContainer.add(bDisplayInstructorClose);
+
+        // tab settings
+        pDisplayInstructorContainer.setLayout(new GridLayout(5,2,5,5));
+        tabManager.addTab("Display Instructor", pDisplayInstructorContainer);
+        tabManager.setSelectedComponent(pDisplayInstructorContainer);
+
+        // event handlers
+        DisplayInstructorListener displayInstructorListener = new DisplayInstructorListener();
+        bDisplayInstructorSubmit.addActionListener(displayInstructorListener);
+        bDisplayInstructorClose.addActionListener(displayInstructorListener);
+    }
+    // display Instructor event listener
+    private class DisplayInstructorListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent a) {
+           Object source = a.getSource();
+           if(source == bDisplayInstructorSubmit){
+                String name = tfDisplayInstructor.getText();
+                // verifying input and displaying Instructor
+                if(name.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please Fill All Fields", "Null Text Field(s)", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(manager.getInstructor(name) == null){
+                    JOptionPane.showMessageDialog(null, "Instructor With Name: " + name + " Does Not Exist", "Nonexistant Item", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    Instructor instructor = manager.getInstructor(name);
+                    lDisplayInstructorName.setText(instructor.getName());
+                    lDisplayInstructorCourse.setText(instructor.getCourseName());
+                    lDisplayInstructorEmail.setText(instructor.getEmail());
+                }
+           }
+           else if(source == bDisplayInstructorClose){
+                closeTab();
+           }
+        }
     }
 
     // manage courses menu & logic

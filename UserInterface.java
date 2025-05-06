@@ -499,10 +499,8 @@ public class UserInterface {
 
     /**
      * Handles data export functionality for instructor.
-     * Currently not implemented.
      */
     private void exportInstructorData() {
-        System.out.println("\nExport Data (Not Implemented, In  Progress)");
 
         boolean exportMagement = true;
         while (exportMagement) {
