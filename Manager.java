@@ -334,11 +334,19 @@ public class Manager {
             // Write student grades
             pWriter.println("Course Grade Summary:");
             for (Student student : roster) {
+                pWriter.printf(" Student: %s%n", student.getName());
+                int totalScore = 0;
+                int totalMax = 0;
+                for (Assignment assignment : student.getAssignments()) {
+                    totalScore += assignment.getScore();
+                    totalMax += assignment.getMaxScore();
+                }
+                double pct = (totalMax > 0) ? ((double) totalScore / totalMax) * 100.0 : 0.0;
                 ArrayList<Assignment> assignments = student.getAssignments();
                 Grade grade = new Grade();
                 String letterGrade = grade.getLetterGrade(assignments);
 
-                pWriter.printf(" Student: %s%n", student.getName());
+                pWriter.printf(" Total: %d/%d (%.2f%%)%n", totalScore, totalMax, pct);
                 pWriter.printf(" Letter Grade: %s%n%n", letterGrade);
                 
             }
