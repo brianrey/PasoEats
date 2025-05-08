@@ -337,18 +337,22 @@ public class Manager {
                 pWriter.printf(" Student: %s%n", student.getName());
                 int totalScore = 0;
                 int totalMax = 0;
-                for (Assignment assignment : student.getAssignments()) {
+                ArrayList<Assignment> assignments = student.getAssignments();
+                pWriter.println(" Assignments:");
+                for (Assignment assignment : assignments) {
+                    pWriter.printf("  - %s: %d/%d%n",
+                        assignment.getAssignmentName(),
+                        assignment.getScore(),
+                        assignment.getMaxScore());
                     totalScore += assignment.getScore();
                     totalMax += assignment.getMaxScore();
                 }
                 double pct = (totalMax > 0) ? ((double) totalScore / totalMax) * 100.0 : 0.0;
-                ArrayList<Assignment> assignments = student.getAssignments();
                 Grade grade = new Grade();
                 String letterGrade = grade.getLetterGrade(assignments);
 
                 pWriter.printf(" Total: %d/%d (%.2f%%)%n", totalScore, totalMax, pct);
                 pWriter.printf(" Letter Grade: %s%n%n", letterGrade);
-                
             }
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
