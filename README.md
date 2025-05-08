@@ -1,20 +1,15 @@
 # PasoEats
 Cuesta College CIS-321 Project Repository.
 
-In `UserInterface.java`
-```java
-TODO: exportData();
-TODO: exportStudentData();
-TODO: displayGradesAndAverages();
-```
+<p align="left">
+  <img src="https://img.shields.io/github/stars/brianrey/PasoEats?style=social" alt="Stars" />
+  <img src="https://img.shields.io/github/forks/brianrey/PasoEats?style=social" alt="Forks" />
+  <img src="https://img.shields.io/github/issues/brianrey/PasoEats" alt="Issues" />
+  <img src="https://img.shields.io/github/contributors/brianrey/PasoEats" alt="Contributors" />
+  <img src="https://img.shields.io/github/languages/top/brianrey/PasoEats?style=flat-square" alt="Top Language" />
+  <img src="https://img.shields.io/github/last-commit/brianrey/PasoEats?style=flat-square" alt="Last Commit" />
+</p>
 
-UserInterface.java Flowchart
-![UserInterface Flowchart](https://github.com/brianrey/PasoEats/blob/Reese's-Branch/Class%20Diagrams/UserInterface%20Flowchart.png)
-![Manager](https://github.com/brianrey/PasoEats/blob/Reese's-Branch/Class%20Diagrams/Manager.png)
-![UserInterface](https://github.com/brianrey/PasoEats/blob/Reese's-Branch/Class%20Diagrams/UserInterface.png)
-![Person](https://github.com/brianrey/PasoEats/blob/Reese's-Branch/Class%20Diagrams/Person.png)
-![Student](https://github.com/brianrey/PasoEats/blob/Reese's-Branch/Class%20Diagrams/Student.png)
-![Instructor](https://github.com/brianrey/PasoEats/blob/Reese's-Branch/Class%20Diagrams/Instructor.png)
-![Course](https://github.com/brianrey/PasoEats/blob/Reese's-Branch/Class%20Diagrams/Course.png)
-![Assignment](https://github.com/brianrey/PasoEats/blob/Reese's-Branch/Class%20Diagrams/Assignment.png)
-![Grade](https://github.com/brianrey/PasoEats/blob/Reese's-Branch/Class%20Diagrams/Grade.png)
+<p align="left">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=brianrey&repo=PasoEats&theme=default" alt="" />
+</p>
