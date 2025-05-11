@@ -1,7 +1,8 @@
 public class Main {
     public static void main(String[] args) {
         Manager manager = new Manager();
-        UserInterface ui = new UserInterface(manager);
+        //UserInterface ui = new UserInterface(manager);
+        GUI gui = new GUI(manager);
 
         manager.addStudent("mike@example.com", "Mike", "1");
         manager.addStudent("bob@example.com", "Bob", "2");
@@ -51,10 +52,6 @@ public class Main {
         manager.enrollStudent("14", "Dr Pepper History");
         manager.enrollStudent("15", "Dr Pepper History");
 
-        //manager.printStudents();
-        //manager.printInstructors();
-        //manager.printCourses();
-
         manager.addAssignment("CS1", "Assignment 1", 100);
         manager.addAssignment("CS1", "Assignment 2", 100);
         manager.addAssignment("CS1", "Assignment 3", 100);
@@ -85,12 +82,7 @@ public class Main {
         manager.addAssignment("Dr Pepper History", "Assignment 4", 100);
         manager.addAssignment("Dr Pepper History", "Assignment 5", 100);
 
-        //manager.getStudentGrade("1");
-        //manager.getStudentGrade("2");
-
         //ui.startApp();
-
-        GUI gui = new GUI(manager);
         gui.startApp();
     }
 }

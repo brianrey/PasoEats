@@ -2,9 +2,26 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+
+/*
+ * TODO: 
+ * 
+ * Check for bugs
+ * 
+ *  INSTRUCTOR: 
+ *      fix assignment always being null in edit assignment menu
+ *      manage courses
+ *      export data
+ *  STUDENT: 
+ *      modify name
+ *      modify email
+ *      export data
+ */
+
 public class GUI{
     private Manager manager;
-    private Student currStudent;
+    private Student loggedInStudent;
+    private Student instructorGradeStudent;
 
     // making main containers
     private JFrame frame = new JFrame("Course Manager");
@@ -16,7 +33,6 @@ public class GUI{
     JLabel lLoginText = new JLabel("Please Select Your Role:");
     JButton bLoginInstructor = new JButton("Instructor");
     JButton bLoginStudent = new JButton("Student");
-    JButton bLoginClose = new JButton("Close Tab");
 
     // making instructor menu components
     JPanel pInstructorContainer = new JPanel();
@@ -39,7 +55,9 @@ public class GUI{
 
     // making student menu components
     JPanel pStudentContainer = new JPanel();
+    JPanel pStudentContainerText = new JPanel();
     JPanel pStudentText = new JPanel();
+    JLabel lStudentIntro = new JLabel();
     JLabel lStudentText = new JLabel("Please Choose One: ");
     JButton bStudentGradeSum = new JButton("View Grade Summary");
     JButton bStudentModName = new JButton("Modify My Name");
@@ -95,6 +113,35 @@ public class GUI{
     JButton bManageAssignmentsModGrade = new JButton("Modify Assignment Grade");
     JButton bManageAssignmentsClose = new JButton("Close Tab");
 
+    // making add assignment components
+    JPanel pAddAssignmentContainer = new JPanel();
+    JLabel lAddAssignmentCourseNameLabel = new JLabel("Enter Course Name to Add To: ");
+    JTextField tfAddAssignmentCourseName = new JTextField();
+    JLabel lAddAssignmentAssignmentNameLabel = new JLabel("Enter Assignment Name: ");
+    JTextField tfAddAssignmentAssignmentName = new JTextField();
+    JLabel lAddAssignmentMaxScoreLabel = new JLabel("Enter Max Score: ");
+    JTextField tfAddAssignmentMaxScore = new JTextField();
+    JButton bAddAssignmentSubmit = new JButton("Submit");
+    JButton bAddAssignmentClose = new JButton("Close");
+
+    // making edit assignment components
+    JPanel pEditAssignmentContainer = new JPanel();
+    JLabel lEditAssignmentID = new JLabel("Enter Student ID: ");
+    JTextField tfEditAssignmentID = new JTextField();
+    JLabel lEditAssignmentAssignment = new JLabel("Enter Assignment Name: ");
+    JTextField tfEditAssignmentAssignment = new JTextField();
+    JLabel lEditAssignmentScore = new JLabel("Enter New Score: ");
+    JTextField tfEditAssignmentScore = new JTextField();
+    JButton bEditAssignmentSubmit = new JButton("Submit");
+    JButton bEditAssignmentClose = new JButton("Close Tab");
+
+    // making instructor student grade summary components
+    JPanel pInstructorStudentGradeContainer = new JPanel();
+    JLabel lInstructorStudentGradeContainer = new JLabel("Enter Student To View: ");
+    JTextField tfInstructorStudentGradeID = new JTextField();
+    JButton bInstructorStudentGradeSubmit = new JButton("Submit");
+    JButton bInstructorStudentGradeClose = new JButton("Close");
+
     // making manage instructors components
     JPanel pManageInstructorsContainer = new JPanel();
     JPanel pManageInstructorsText = new JPanel();
@@ -139,11 +186,8 @@ public class GUI{
         this.manager = manager;
     }
 
-    private void closeTab(){
-        int x = tabManager.getSelectedIndex();
-        if(x != -1){
-            tabManager.removeTabAt(x);
-        }
+    private void closeTab(Component currTab){
+        tabManager.remove(currTab);
     }
 
     // login menu
@@ -153,10 +197,9 @@ public class GUI{
         pLoginContainer.add(pLoginText);
         pLoginContainer.add(bLoginInstructor);
         pLoginContainer.add(bLoginStudent);
-        pLoginContainer.add(bLoginClose);
 
         // tab settings
-        pLoginContainer.setLayout(new GridLayout(4, 1, 10, 5));
+        pLoginContainer.setLayout(new GridLayout(3, 1, 10, 5));
         tabManager.addTab("Login", pLoginContainer);
 
         // frame settings
@@ -172,7 +215,6 @@ public class GUI{
         LoginListener loginListener = new LoginListener();
         bLoginInstructor.addActionListener(loginListener);
         bLoginStudent.addActionListener(loginListener);
-        bLoginClose.addActionListener(loginListener);
     }
     // login event handler
     private class LoginListener implements ActionListener{
@@ -183,8 +225,6 @@ public class GUI{
                 instructorMenu();
             } else if(source == bLoginStudent){
                 studentLoginMenu();
-            } else if(source == bLoginClose){
-                closeTab();
             }
         }
     }
@@ -232,7 +272,7 @@ public class GUI{
             } else if(source == bInstructorStudent){
                 manageStudentsMenu();
             } else if(source == bInstructorClose){
-                closeTab();
+                closeTab(pInstructorContainer);
             }
         }
     }
@@ -263,26 +303,29 @@ public class GUI{
             Object source = a.getSource();
             if(source == bStudentLoginLogin){
                 String studentID = tfStudentLogin.getText();
-                currStudent = manager.getStudent(studentID);
                 // verify student & continue
-                if(currStudent != null){
-                    studentMenu();
+                if(manager.getStudent(studentID) != null){
+                    loggedInStudent = manager.getStudent(studentID);
+                    studentMenu(loggedInStudent.getName());
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Please enter a valid ID", "Illegal ID", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Please enter a valid ID", "Nonexistant Item", JOptionPane.ERROR_MESSAGE);
                 }
             }
             else if(source == bStudentLoginClose){
-                closeTab();
+                closeTab(pStudentLoginContainer);
             }
         }
     }
 
     // student menu
-    private void studentMenu(){
+    private void studentMenu(String studentName){
+        // setting text 
+        lStudentIntro.setText("Hello " + studentName + "!");
         // adding components to panels
-        pStudentText.add(lStudentText);
-        pStudentContainer.add(pStudentText);
+        pStudentContainerText.add(lStudentIntro);
+        pStudentContainerText.add(lStudentText);
+        pStudentContainer.add(pStudentContainerText);
         pStudentContainer.add(bStudentGradeSum);
         pStudentContainer.add(bStudentModName);
         pStudentContainer.add(bStudentModEmail);
@@ -308,7 +351,7 @@ public class GUI{
         public void actionPerformed(ActionEvent a){
             Object source = a.getSource();
             if(source == bStudentGradeSum){
-                gradeSummary();;
+                gradeSummary(loggedInStudent);
             }
             else if(source == bStudentModName){
                 changeStudentName();
@@ -320,7 +363,7 @@ public class GUI{
                 exportStudentData();
             }
             else if(source == bStudentClose){
-                closeTab();
+                closeTab(pStudentContainer);
             }
         }
     }
@@ -357,7 +400,7 @@ public class GUI{
                 displayStudent();
             }
             else if(source == bManageStudentClose){
-                closeTab();
+                closeTab(pManageStudentContainer);
             }
         }
     }
@@ -416,7 +459,7 @@ public class GUI{
                 }
             }
             else if(source == bAddStudentClose){
-                closeTab();
+                closeTab(pAddStudentContainer);
             }
         }
     }
@@ -467,7 +510,7 @@ public class GUI{
                 }
            }
            else if(source == bDisplayStudentClose){
-                closeTab();
+                closeTab(pDisplayStudentContainer);
            }
         }
     }
@@ -500,16 +543,177 @@ public class GUI{
         public void actionPerformed(ActionEvent a) {
             Object source = a.getSource();
             if(source == bManageAssignmentsAdd){
-                System.out.println("adding assignments...");
+                addAssignmentMenu();
             }
             else if(source == bManageAssignmentsViewGrade){
-                System.out.println("viewing assignments...");
+                instructorGradeSummaryMenu();
             }
             else if(source == bManageAssignmentsModGrade){
-                System.out.println("modifying assignments...");
+                editAssignmentMenu();
             }
             else if(source == bManageAssignmentsClose){
-                closeTab();
+                closeTab(pManageAssignmentsContainer);
+            }
+        }
+    }
+
+    // add assignments menu
+    private void addAssignmentMenu(){
+        // adding components to panels
+        pAddAssignmentContainer.add(lAddAssignmentCourseNameLabel);
+        pAddAssignmentContainer.add(tfAddAssignmentCourseName);
+        pAddAssignmentContainer.add(lAddAssignmentAssignmentNameLabel);
+        pAddAssignmentContainer.add(tfAddAssignmentAssignmentName);
+        pAddAssignmentContainer.add(lAddAssignmentMaxScoreLabel);
+        pAddAssignmentContainer.add(tfAddAssignmentMaxScore);
+        pAddAssignmentContainer.add(bAddAssignmentSubmit);
+        pAddAssignmentContainer.add(bAddAssignmentClose);
+
+        // tab settings 
+        pAddAssignmentContainer.setLayout(new GridLayout(4,2,5,5));
+        tabManager.addTab("Add Assignment", pAddAssignmentContainer);
+        tabManager.setSelectedComponent(pAddAssignmentContainer);
+
+        // event handlers
+        AddAssignmentListener addAssignmentListener = new AddAssignmentListener();
+        bAddAssignmentSubmit.addActionListener(addAssignmentListener);
+        bAddAssignmentClose.addActionListener(addAssignmentListener);
+    }
+    private class AddAssignmentListener implements ActionListener{
+         @Override
+        public void actionPerformed(ActionEvent a){
+            Object source = a.getSource();
+            if(source == bAddAssignmentSubmit){
+                String courseName = tfAddAssignmentCourseName.getText();
+                String assignmentName = tfAddAssignmentAssignmentName.getText();
+                String scoreTemp = tfAddAssignmentMaxScore.getText();
+
+                // validating input and adding assignment
+                if(courseName.isEmpty() || assignmentName.isEmpty() || scoreTemp.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please Fill All Fields", "Null Text Field(s)", JOptionPane.ERROR_MESSAGE);
+                }
+                try{
+                    int maxScore = Integer.parseInt(scoreTemp);
+                    if(maxScore < 0){
+                        throw new IllegalArgumentException();
+                    }
+                    else if(manager.getCourse(courseName) == null){
+                        JOptionPane.showMessageDialog(null, "Course Not Found", "Nonexistant Item", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else{
+                        manager.addAssignment(courseName, assignmentName, maxScore);
+                        JOptionPane.showMessageDialog(null, "Assignment " + assignmentName + " Successfully Added", "Item Added", JOptionPane.PLAIN_MESSAGE);
+                    }
+                }
+                catch(IllegalArgumentException e){
+                    JOptionPane.showMessageDialog(null, "Please Enter a Positive Whole Number", "Illegal Argument Exception", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            else if(source == bAddAssignmentClose){
+                closeTab(pAddAssignmentContainer);
+            }
+        }
+    }
+
+    private void instructorGradeSummaryMenu(){
+        // adding components to panels
+        pInstructorStudentGradeContainer.add(lInstructorStudentGradeContainer);
+        pInstructorStudentGradeContainer.add(tfInstructorStudentGradeID);
+        pInstructorStudentGradeContainer.add(bInstructorStudentGradeSubmit);
+        pInstructorStudentGradeContainer.add(bInstructorStudentGradeClose);
+
+        // tab settings
+        pInstructorStudentGradeContainer.setLayout(new GridLayout(2, 2, 5, 5));
+        tabManager.addTab("Student Grade Summary", pInstructorStudentGradeContainer);
+        tabManager.setSelectedComponent(pInstructorStudentGradeContainer);
+
+        // event handlers
+        GradeSummaryListener gradeSummaryListener = new GradeSummaryListener();
+        bInstructorStudentGradeSubmit.addActionListener(gradeSummaryListener);
+        bInstructorStudentGradeClose.addActionListener(gradeSummaryListener);
+    }
+    private class GradeSummaryListener implements ActionListener{
+         @Override
+        public void actionPerformed(ActionEvent a){
+            Object source = a.getSource();
+            if(source == bInstructorStudentGradeSubmit){
+                String ID = tfInstructorStudentGradeID.getText();
+                if(ID.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please Fill All Fields", "Null Text Field(s)", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(manager.getStudent(ID) == null){
+                    JOptionPane.showMessageDialog(null, "Student At ID " + ID + " Does Not Exist", "Nonexistant Student", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    instructorGradeStudent = manager.getStudent(ID);
+                    gradeSummary(instructorGradeStudent);
+                }
+            }
+            else if(source == bInstructorStudentGradeClose){
+                closeTab(pInstructorStudentGradeContainer);
+            }
+        }
+    }
+
+    private void editAssignmentMenu(){
+        // adding components to panels
+        pEditAssignmentContainer.add(lEditAssignmentID);
+        pEditAssignmentContainer.add(tfEditAssignmentID);
+        pEditAssignmentContainer.add(lEditAssignmentAssignment);
+        pEditAssignmentContainer.add(tfEditAssignmentAssignment);
+        pEditAssignmentContainer.add(lEditAssignmentScore);
+        pEditAssignmentContainer.add(tfEditAssignmentScore);
+        pEditAssignmentContainer.add(bEditAssignmentSubmit);
+        pEditAssignmentContainer.add(bEditAssignmentClose);
+
+        // tab settings 
+        pEditAssignmentContainer.setLayout(new GridLayout(4, 2, 5, 5));
+        tabManager.addTab("Edit Student Assignment", pEditAssignmentContainer);
+        tabManager.setSelectedComponent(pEditAssignmentContainer);
+
+        // event handlers
+        EditAssignmentListener editAssignmentListener = new EditAssignmentListener();
+        bEditAssignmentSubmit.addActionListener(editAssignmentListener);
+        bEditAssignmentClose.addActionListener(editAssignmentListener);
+    }
+    private class EditAssignmentListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent a) {
+            Object source = a.getSource();
+            if(source == bEditAssignmentSubmit){
+                String ID = tfEditAssignmentID.getText();
+                String assignmentName = tfEditAssignmentAssignment.getText();
+                String scoreTemp = tfEditAssignmentScore.getText();
+                if(ID.isEmpty() || assignmentName.isEmpty() || scoreTemp.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please Fill All Fields", "Null Text Field(s)", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                try{
+                    int score = Integer.parseInt(scoreTemp);
+                    Student student = manager.getStudent(ID);
+                    Assignment assignment = student.getAssignment(assignmentName);
+                    if(score < 0){
+                        throw new IllegalArgumentException();
+                    }
+                    else if(manager.getStudent(ID) == null){
+                        JOptionPane.showMessageDialog(null, "Student At ID " + ID + " Does Not Exist", "Nonexistant Item", JOptionPane.ERROR_MESSAGE);
+                    }
+                    // @Bug -- assignment always shows as not found
+                    else if(assignment == null){
+                        JOptionPane.showMessageDialog(null, "Assignment " + assignmentName + " Not Found", "Nonexistant Item", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else{
+                        assignment.setScore(score);
+                        JOptionPane.showMessageDialog(null, "Assignment " + assignmentName + " Successfully Changed To Grade " + score, "Assignment Changed", JOptionPane.PLAIN_MESSAGE);
+                    }
+                }
+                catch(IllegalArgumentException e){
+                    JOptionPane.showMessageDialog(null, "Please Enter a Positive Whole Number", "Illegal Argument Exception", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }
+            else if(source == bEditAssignmentClose){
+                closeTab(pEditAssignmentContainer);
             }
         }
     }
@@ -545,7 +749,7 @@ public class GUI{
                 displayInstructor();
             }
             else if(source == bManageInstructorsClose){
-                closeTab();
+                closeTab(pManageInstructorsContainer);
             }
         }        
     }
@@ -604,7 +808,7 @@ public class GUI{
                 }
             }
             else if(source == bAddInstructorClose){
-                closeTab();
+                closeTab(pAddInstructorContainer);
             }
         }
     }
@@ -655,7 +859,7 @@ public class GUI{
                 }
            }
            else if(source == bDisplayInstructorClose){
-                closeTab();
+                closeTab(pDisplayInstructorContainer);
            }
         }
     }
@@ -666,11 +870,11 @@ public class GUI{
     }
 
 
-
-    // grade summary 
-    private void gradeSummary(){
-        System.out.println("student grade summary...");
+    // grade summary
+    private void gradeSummary(Student student){
+        System.out.println("grade summary for " + student.getName());
     }
+    
     // change student name 
     private void changeStudentName(){
         System.out.println("change student name...");

@@ -59,6 +59,21 @@ public class Student extends Person {
     public ArrayList<Assignment> getAssignments() {
         return assignments;
     }
+
+    /**
+     * Gets a specific assignment for this student.
+     * 
+     * @param assignmentName The name of the assignment
+     * @return An assignment with the specified name OR null if assignment is not found
+     */
+    public Assignment getAssignment(String assignmentName){
+        for(Assignment currAssignment : assignments){
+            if(currAssignment.getAssignmentName() == assignmentName){
+                return currAssignment;
+            }
+        }
+        return null;
+    }
     
     /**
      * Prints the student's details.
