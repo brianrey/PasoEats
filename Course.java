@@ -21,12 +21,12 @@ public class Course {
      * @param schedule The days of the week when the course meets
      */
     public Course(String courseName, String roomNumber, String meetTime, String instructor, String schedule) {
-        this.courseName = courseName;
-        this.roomNumber = roomNumber;
-        this.meetTime = meetTime;
-        this.instructor = instructor;
-        this.schedule = schedule;
-        roster = new ArrayList<>();
+        this.setCourseName(courseName);
+        this.setRoomNumber(roomNumber);
+        this.setMeetTime(meetTime);
+        this.setInstructor(instructor);
+        this.setSchedule(schedule);
+        this.setRoster(new ArrayList<>()); // empty roster to start
     }
 
     /**
