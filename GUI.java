@@ -8,14 +8,15 @@ import javax.swing.*;
  * 
  * Check for bugs
  * 
+ * STUDENT: 
+ *      grade summary
+ *      export data
  *  INSTRUCTOR: 
  *      fix assignment always being null in edit assignment menu
+ *      grade summary
  *      manage courses
  *      export data
- *  STUDENT: 
- *      modify name
- *      modify email
- *      export data
+ *  
  */
 
 public class GUI{
@@ -33,17 +34,6 @@ public class GUI{
     JLabel lLoginText = new JLabel("Please Select Your Role:");
     JButton bLoginInstructor = new JButton("Instructor");
     JButton bLoginStudent = new JButton("Student");
-
-    // making instructor menu components
-    JPanel pInstructorContainer = new JPanel();
-    JPanel pInstructorText = new JPanel();
-    JLabel lInstructorText = new JLabel("Please Choose One: ");
-    JButton bInstructorStudent = new JButton("Manage Students");
-    JButton bInstructorInstructor = new JButton("Manage Instructors");
-    JButton bInstructorAssignement = new JButton("Manage Assignments");
-    JButton bInstructorCourses = new JButton("Manage Courses");
-    JButton bInstructorExport = new JButton("Export Student Data");
-    JButton bInstructorClose = new JButton("Close Tab");
 
     // making student login components
     JPanel pStudentLoginContainer = new JPanel();
@@ -64,6 +54,37 @@ public class GUI{
     JButton bStudentModEmail = new JButton("Modify My Email");
     JButton bStudentExport = new JButton("Export Data");
     JButton bStudentClose = new JButton("Close Tab");
+
+    // making change student name components
+    JPanel pChangeStudentNameContainer = new JPanel();
+    JLabel lChangeStudentNameText = new JLabel("Current Name: ");
+    JLabel lChangeStudentNameCurr = new JLabel();
+    JLabel lChangeStudentNameNew = new JLabel("Enter New Name: ");
+    JTextField tfChangeStudentNameNew = new JTextField();
+    JButton bChangeStudentNameSubmit = new JButton("Submit");
+    JButton bChangeStudentNameClose = new JButton("Close Tab");
+
+    // making change student email components
+    JPanel pChangeStudentEmailContainer = new JPanel();
+    JLabel lChangeStudentEmailText = new JLabel("Change Email For: ");
+    JLabel lChangeStudentEmailName = new JLabel();
+    JLabel lChangeStudentEmailLabel = new JLabel("Current Email: ");
+    JLabel lChangeStudentEmailCurr = new JLabel();
+    JLabel lChangeStudentEmailNew = new JLabel("Enter New Email: ");
+    JTextField tfChangeStudentEmailNew = new JTextField();
+    JButton bChangeStudentEmailSubmit = new JButton("Submit");
+    JButton bChangeStudentEmailClose = new JButton("Close Tab");
+
+    // making instructor menu components
+    JPanel pInstructorContainer = new JPanel();
+    JPanel pInstructorText = new JPanel();
+    JLabel lInstructorText = new JLabel("Please Choose One: ");
+    JButton bInstructorStudent = new JButton("Manage Students");
+    JButton bInstructorInstructor = new JButton("Manage Instructors");
+    JButton bInstructorAssignement = new JButton("Manage Assignments");
+    JButton bInstructorCourses = new JButton("Manage Courses");
+    JButton bInstructorExport = new JButton("Export Student Data");
+    JButton bInstructorClose = new JButton("Close Tab");
     
     // making manage student menu components
     JPanel pManageStudentContainer = new JPanel();
@@ -195,8 +216,8 @@ public class GUI{
         // adding components to panels
         pLoginText.add(lLoginText);
         pLoginContainer.add(pLoginText);
-        pLoginContainer.add(bLoginInstructor);
         pLoginContainer.add(bLoginStudent);
+        pLoginContainer.add(bLoginInstructor);
 
         // tab settings
         pLoginContainer.setLayout(new GridLayout(3, 1, 10, 5));
@@ -212,12 +233,13 @@ public class GUI{
         frame.setVisible(true);
 
         // event handler implement
-        LoginListener loginListener = new LoginListener();
-        bLoginInstructor.addActionListener(loginListener);
-        bLoginStudent.addActionListener(loginListener);
+        StartListener startListener = new StartListener();
+        bLoginInstructor.addActionListener(startListener);
+        bLoginStudent.addActionListener(startListener);
     }
-    // login event handler
-    private class LoginListener implements ActionListener{
+
+    // start event handler
+    private class StartListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent a){
             Object source = a.getSource();
@@ -225,54 +247,6 @@ public class GUI{
                 instructorMenu();
             } else if(source == bLoginStudent){
                 studentLoginMenu();
-            }
-        }
-    }
-
-    // instructor menu
-    private void instructorMenu(){
-        // adding components to panels
-        pInstructorText.add(lInstructorText);
-        pInstructorContainer.add(pInstructorText);
-        pInstructorContainer.add(bInstructorStudent);
-        pInstructorContainer.add(bInstructorInstructor);
-        pInstructorContainer.add(bInstructorAssignement);
-        pInstructorContainer.add(bInstructorCourses);
-        pInstructorContainer.add(bInstructorExport);
-        pInstructorContainer.add(bInstructorClose);
-
-        // tab settings
-        pInstructorContainer.setLayout(new GridLayout(7, 1, 10, 5));
-        tabManager.addTab("Instructor Menu", pInstructorContainer);
-        tabManager.setSelectedComponent(pInstructorContainer);
-
-        // event handlers
-        InstructorListener instructorListener = new InstructorListener();
-        bInstructorAssignement.addActionListener(instructorListener);
-        bInstructorCourses.addActionListener(instructorListener);
-        bInstructorExport.addActionListener(instructorListener);
-        bInstructorInstructor.addActionListener(instructorListener);
-        bInstructorStudent.addActionListener(instructorListener);
-        bInstructorClose.addActionListener(instructorListener);
-
-    }
-    // instructor menu event handler
-    private class InstructorListener implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent a){
-            Object source = a.getSource();
-            if(source == bInstructorAssignement){
-                manageAssignmentsMenu();
-            } else if(source == bInstructorCourses){
-                manageCoursesMenu();
-            } else if(source == bInstructorExport){
-                exportStudentData();
-            } else if(source == bInstructorInstructor){
-                manageInstructorsMenu();
-            } else if(source == bInstructorStudent){
-                manageStudentsMenu();
-            } else if(source == bInstructorClose){
-                closeTab(pInstructorContainer);
             }
         }
     }
@@ -296,7 +270,7 @@ public class GUI{
         bStudentLoginLogin.addActionListener(studentLoginListener);
         bStudentLoginClose.addActionListener(studentLoginListener);
     }
-    // student login logic
+    // student login event handler
     private class StudentLoginListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent a){
@@ -304,12 +278,15 @@ public class GUI{
             if(source == bStudentLoginLogin){
                 String studentID = tfStudentLogin.getText();
                 // verify student & continue
-                if(manager.getStudent(studentID) != null){
-                    loggedInStudent = manager.getStudent(studentID);
-                    studentMenu(loggedInStudent.getName());
+                if(studentID.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please Fill All Fields", "Null Text Field(s)", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(manager.getStudent(studentID) == null){
+                    JOptionPane.showMessageDialog(null, "Please enter a valid ID", "Nonexistant Item", JOptionPane.ERROR_MESSAGE);
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Please enter a valid ID", "Nonexistant Item", JOptionPane.ERROR_MESSAGE);
+                    loggedInStudent = manager.getStudent(studentID);
+                    studentMenu(loggedInStudent.getName());
                 }
             }
             else if(source == bStudentLoginClose){
@@ -364,6 +341,153 @@ public class GUI{
             }
             else if(source == bStudentClose){
                 closeTab(pStudentContainer);
+            }
+        }
+    }
+
+    // change student name 
+    private void changeStudentName(){
+        // setting text
+        lChangeStudentNameCurr.setText(loggedInStudent.getName());
+
+        // adding components to panels
+        pChangeStudentNameContainer.add(lChangeStudentNameText);
+        pChangeStudentNameContainer.add(lChangeStudentNameCurr);
+        pChangeStudentNameContainer.add(lChangeStudentNameNew);
+        pChangeStudentNameContainer.add(tfChangeStudentNameNew);
+        pChangeStudentNameContainer.add(bChangeStudentNameSubmit);
+        pChangeStudentNameContainer.add(bChangeStudentNameClose);
+
+        // tab settings
+        pChangeStudentNameContainer.setLayout(new GridLayout(3, 2, 5, 5));
+        tabManager.addTab("Change Student Name", pChangeStudentNameContainer);
+        tabManager.setSelectedComponent(pChangeStudentNameContainer);
+
+        // event handlers
+        ChangeStudentNameListener changeStudentNameListener = new ChangeStudentNameListener();
+        bChangeStudentNameSubmit.addActionListener(changeStudentNameListener);
+        bChangeStudentNameClose.addActionListener(changeStudentNameListener);
+    }
+    private class ChangeStudentNameListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent a){
+            Object source = a.getSource();
+            if(source == bChangeStudentNameSubmit){
+                String newName = tfChangeStudentNameNew.getText();
+                if(newName.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please Fill All Fields", "Null Text Field(s)", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    loggedInStudent.setName(newName);
+                    lChangeStudentNameCurr.setText(loggedInStudent.getName());
+                    JOptionPane.showMessageDialog(null, "New Name Set To: " + loggedInStudent.getName(), "Change Made", JOptionPane.PLAIN_MESSAGE);
+                }
+            }
+            else if(source == bChangeStudentNameClose){
+                closeTab(pChangeStudentNameContainer);
+            }
+        }
+    }
+
+    // change student email
+    private void changeStudentEmail(){
+        // setting text
+        lChangeStudentEmailName.setText(loggedInStudent.getName());
+        lChangeStudentEmailCurr.setText(loggedInStudent.getEmail());
+
+        // adding components to panels
+        pChangeStudentEmailContainer.add(lChangeStudentEmailText);
+        pChangeStudentEmailContainer.add(lChangeStudentEmailName);
+        pChangeStudentEmailContainer.add(lChangeStudentEmailLabel);
+        pChangeStudentEmailContainer.add(lChangeStudentEmailCurr);
+        pChangeStudentEmailContainer.add(lChangeStudentEmailNew);
+        pChangeStudentEmailContainer.add(tfChangeStudentEmailNew);
+        pChangeStudentEmailContainer.add(bChangeStudentEmailSubmit);
+        pChangeStudentEmailContainer.add(bChangeStudentEmailClose);
+
+        // tab settings
+        pChangeStudentEmailContainer.setLayout(new GridLayout(4, 2, 5, 5));
+        tabManager.addTab("Change Student Email", pChangeStudentEmailContainer);
+        tabManager.setSelectedComponent(pChangeStudentEmailContainer);
+
+        // event handlers
+        ChangeStudentEmailListener changeStudentEmailListener = new ChangeStudentEmailListener();
+        bChangeStudentEmailSubmit.addActionListener(changeStudentEmailListener);
+        bChangeStudentEmailClose.addActionListener(changeStudentEmailListener);
+    }
+    private class ChangeStudentEmailListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent a){
+            Object source = a.getSource();
+            if(source == bChangeStudentEmailSubmit){
+                String newEmail = tfChangeStudentEmailNew.getText();
+                if(newEmail.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please Fill All Fields", "Null Text Field(s)", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(!newEmail.contains("@") || !newEmail.contains(".")){
+                    JOptionPane.showMessageDialog(null, "Email Looks Invalid", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    loggedInStudent.setEmail(newEmail);
+                    lChangeStudentEmailCurr.setText(loggedInStudent.getEmail());
+                    JOptionPane.showMessageDialog(null, "New Email Set To: " + loggedInStudent.getEmail(), "Change Made", JOptionPane.PLAIN_MESSAGE);
+                }
+            }
+            else if(source == bChangeStudentEmailClose){
+                closeTab(pChangeStudentEmailContainer);
+            }
+        }
+    }
+
+    // export student data 
+    private void exportStudentData(){
+        System.out.println("exporting...");
+    }
+
+    // instructor menu
+    private void instructorMenu(){
+        // adding components to panels
+        pInstructorText.add(lInstructorText);
+        pInstructorContainer.add(pInstructorText);
+        pInstructorContainer.add(bInstructorStudent);
+        pInstructorContainer.add(bInstructorInstructor);
+        pInstructorContainer.add(bInstructorAssignement);
+        pInstructorContainer.add(bInstructorCourses);
+        pInstructorContainer.add(bInstructorExport);
+        pInstructorContainer.add(bInstructorClose);
+
+        // tab settings
+        pInstructorContainer.setLayout(new GridLayout(7, 1, 10, 5));
+        tabManager.addTab("Instructor Menu", pInstructorContainer);
+        tabManager.setSelectedComponent(pInstructorContainer);
+
+        // event handlers
+        InstructorListener instructorListener = new InstructorListener();
+        bInstructorAssignement.addActionListener(instructorListener);
+        bInstructorCourses.addActionListener(instructorListener);
+        bInstructorExport.addActionListener(instructorListener);
+        bInstructorInstructor.addActionListener(instructorListener);
+        bInstructorStudent.addActionListener(instructorListener);
+        bInstructorClose.addActionListener(instructorListener);
+
+    }
+    // instructor menu event handler
+    private class InstructorListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent a){
+            Object source = a.getSource();
+            if(source == bInstructorAssignement){
+                manageAssignmentsMenu();
+            } else if(source == bInstructorCourses){
+                manageCoursesMenu();
+            } else if(source == bInstructorExport){
+                exportStudentData();
+            } else if(source == bInstructorInstructor){
+                manageInstructorsMenu();
+            } else if(source == bInstructorStudent){
+                manageStudentsMenu();
+            } else if(source == bInstructorClose){
+                closeTab(pInstructorContainer);
             }
         }
     }
@@ -690,8 +814,8 @@ public class GUI{
                 }
                 try{
                     int score = Integer.parseInt(scoreTemp);
-                    Student student = manager.getStudent(ID);
-                    Assignment assignment = student.getAssignment(assignmentName);
+                    Student currStudent = manager.getStudent(ID);
+                    Assignment assignment = currStudent.getAssignment(assignmentName);
                     if(score < 0){
                         throw new IllegalArgumentException();
                     }
@@ -875,16 +999,4 @@ public class GUI{
         System.out.println("grade summary for " + student.getName());
     }
     
-    // change student name 
-    private void changeStudentName(){
-        System.out.println("change student name...");
-    }
-    // change student email
-    private void changeStudentEmail(){
-        System.out.println("change student email...");
-    }
-    // export student data 
-    private void exportStudentData(){
-        System.out.println("exporting...");
-    }
 }
