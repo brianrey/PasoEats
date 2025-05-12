@@ -20,10 +20,46 @@ public class UserInterface {
         if (manager == null) { // the UI needs a manager to work so if its null throw an error
             throw new IllegalArgumentException("Manager instance cannot be null.");
         }
-        this.manager = manager;
-        this.scanner = new Scanner(System.in);
+        this.setManager(manager);
+        //this.scanner = new Scanner(System.in);
+        this.setScanner(new Scanner(System.in));
     }
-    //TODO: Add a way to set and get the manager and the scanner
+
+    /**
+     * Sets the manager for this UserInterface.
+     *
+     * @param manager The Manager object to set
+     */
+    public void setManager(Manager manager) {
+        this.manager = manager;
+    }
+
+    /**
+     * Gets the manager for this UserInterface.
+     *
+     * @return The Manager object
+     */
+    public Manager getManager() {
+        return manager;
+    }
+
+    /**
+     * Sets the scanner for this UserInterface.
+     *
+     * @param scanner The Scanner object to set
+     */
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    /**
+     * Gets the scanner for this UserInterface.
+     *
+     * @return The Scanner object
+     */
+    public Scanner getScanner() {
+        return scanner;
+    }   
 
     /**
      * Starts the ui and handles the main ui loop.

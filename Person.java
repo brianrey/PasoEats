@@ -13,9 +13,7 @@ abstract class Person {
      * @param email The email address of the person
      */
     public Person(String name, String email) {
-        //this.name = name;
         this.setName(name);
-        //this.email = email;
         this.setEmail(email);
     }
 

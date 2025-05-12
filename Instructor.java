@@ -14,7 +14,7 @@ public class Instructor extends Person {
      */
     public Instructor(String name, String email, String courseName) {
         super(name, email);
-        this.courseName = courseName;
+        this.setCourseName(courseName);
     }
 
     /**
