@@ -90,4 +90,7 @@ public class Main {
 
         ui.startApp();
     }
+
+    //TODO: create method for loading the sample data
+    
 }

@@ -23,6 +23,7 @@ public class UserInterface {
         this.manager = manager;
         this.scanner = new Scanner(System.in);
     }
+    //TODO: Add a way to set and get the manager and the scanner
 
     /**
      * Starts the ui and handles the main ui loop.

@@ -17,8 +17,9 @@ public class Student extends Person {
      */
     public Student(String name, String email, String studentID) {
         super(name, email);
-        this.studentID = studentID;
-        this.assignments = new ArrayList<>();
+        this.setID(studentID);
+        //this.studentID = studentID;
+        this.assignments = new ArrayList<>(); //TODO: Add a way to set and get the assignments list
     }
 
     /**

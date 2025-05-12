@@ -17,6 +17,7 @@ public class Manager {
     private ArrayList<Instructor> instructors = new ArrayList<Instructor>();
     private ArrayList<Course> courses = new ArrayList<Course>();
     private Random random = new Random();
+    //TODO: confirm there is nothing we need to do there but i dont see 
 
     /**
      * Adds a new student to the system.
