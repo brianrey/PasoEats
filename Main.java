@@ -4,6 +4,14 @@ public class Main {
         //UserInterface ui = new UserInterface(manager);
         GUI gui = new GUI(manager);
 
+        loadSampleData(manager);
+
+        //ui.startApp();
+        gui.startApp();
+    }
+
+    public static void loadSampleData(Manager manager) {
+        // Sample data loading logic here
         manager.addStudent("mike@example.com", "Mike", "1");
         manager.addStudent("bob@example.com", "Bob", "2");
         manager.addStudent("jane@example.com", "Jane", "3");
@@ -30,7 +38,7 @@ public class Main {
         manager.addCourse("CS2", "811", "2:00pm", "Professor Smith", "Monday - Wednesday");
         manager.addCourse("CS3", "812", "2:00pm", "Professor Johnson", "Monday - Wednesday");
         manager.addCourse("CS4", "813", "2:00pm", "Professor Lee", "Monday - Wednesday");
-        manager.addCourse("Dr Pepper History", "814", "2:00pm", "Dr. Pepper", "Monday - Wednesday");
+        manager.addCourse("History1", "814", "2:00pm", "Dr. Pepper", "Monday - Wednesday");
 
         manager.enrollStudent("1", "CS1");
         manager.enrollStudent("2", "CS1");
@@ -76,13 +84,11 @@ public class Main {
         manager.addAssignment("CS4", "Assignment 4", 100);
         manager.addAssignment("CS4", "Assignment 5", 100);
 
-        manager.addAssignment("Dr Pepper History", "Assignment 1", 100);
-        manager.addAssignment("Dr Pepper History", "Assignment 2", 100);
-        manager.addAssignment("Dr Pepper History", "Assignment 3", 100);
-        manager.addAssignment("Dr Pepper History", "Assignment 4", 100);
-        manager.addAssignment("Dr Pepper History", "Assignment 5", 100);
-
-        //ui.startApp();
-        gui.startApp();
+        manager.addAssignment("History1", "Assignment 1", 100);
+        manager.addAssignment("History1", "Assignment 2", 100);
+        manager.addAssignment("History1", "Assignment 3", 100);
+        manager.addAssignment("History1", "Assignment 4", 100);
+        manager.addAssignment("History1", "Assignment 5", 100);
     }
+    
 }

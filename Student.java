@@ -17,8 +17,8 @@ public class Student extends Person {
      */
     public Student(String name, String email, String studentID) {
         super(name, email);
-        this.studentID = studentID;
-        this.assignments = new ArrayList<>();
+        this.setID(studentID);
+        this.assignments = new ArrayList<>();// initialize an empty list of assignments
     }
 
     /**
@@ -59,7 +59,7 @@ public class Student extends Person {
     public ArrayList<Assignment> getAssignments() {
         return assignments;
     }
-
+    
     /**
      * Gets a specific assignment for this student.
      * 
@@ -74,7 +74,7 @@ public class Student extends Person {
         }
         return null;
     }
-    
+
     /**
      * Prints the student's details.
      */

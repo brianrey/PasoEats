@@ -5,6 +5,7 @@ import javax.swing.*;
 
 /*
  * TODO: 
+ * (lines marked with FIXME)
  * 
  * Check for bugs
  * 
@@ -439,7 +440,7 @@ public class GUI{
         }
     }
 
-    // export student data 
+    // FIXME export student data 
     private void exportStudentData(){
         System.out.println("exporting...");
     }
@@ -822,7 +823,7 @@ public class GUI{
                     else if(manager.getStudent(ID) == null){
                         JOptionPane.showMessageDialog(null, "Student At ID " + ID + " Does Not Exist", "Nonexistant Item", JOptionPane.ERROR_MESSAGE);
                     }
-                    // @Bug -- assignment always shows as not found
+                    // FIXME: assignment always returning as null
                     else if(assignment == null){
                         JOptionPane.showMessageDialog(null, "Assignment " + assignmentName + " Not Found", "Nonexistant Item", JOptionPane.ERROR_MESSAGE);
                     }
@@ -988,13 +989,13 @@ public class GUI{
         }
     }
 
-    // manage courses menu & logic
+    // FIXME: manage courses menu & logic
     private void manageCoursesMenu(){
         System.out.println("managing courses...");
     }
 
 
-    // grade summary
+    // FIXME: grade summary
     private void gradeSummary(Student student){
         System.out.println("grade summary for " + student.getName());
     }

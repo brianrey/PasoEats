@@ -16,9 +16,9 @@ public class Assignment {
      */
     // validating the score is more of a placeholder for now because we are using random scores that are between 0 and maxScore.
     public Assignment(String assignmentName, int score, int maxScore){
-        this.assignmentName = assignmentName;
-        this.maxScore = (maxScore > 0) ? Math.min(maxScore, 100) : 100; // if maxScore is less than 0, set it to 100. If maxScore is greater than 100, set it to 100.
-        this.score = Math.max(0, Math.min(score, this.maxScore)); // if score is less than 0, set it to 0, if score is greater than maxScore, set it to maxScore. This makes sure the score is between 0 and maxScore
+        this.setAssignmentName(assignmentName);
+        this.setMaxScore(maxScore); 
+        this.setScore(score);
     }
     
     /**
@@ -46,6 +46,14 @@ public class Assignment {
      */
     public String getAssignmentName(){
         return assignmentName;
+    }
+
+    /**
+     * Sets the maximum score of the assignment.
+     * @return
+     */
+    public void setMaxScore(int maxScore){
+        this.maxScore = (maxScore > 0) ? Math.min(maxScore, 100) : 100; // if maxScore is less than 0, set it to 100. If maxScore is greater than 100, set it to 100.
     }
 
     /**
