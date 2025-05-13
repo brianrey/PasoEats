@@ -5,16 +5,18 @@ import javax.swing.*;
 
 /*
  * TODO: 
- * (lines marked with FIXME)
+ * (lines marked with 'FIXME')
+ * (BETA warnings marked with 'BETA')
  * 
  * Check for bugs
  * 
- * STUDENT: 
+ * GENERAL: 
  *      grade summary
+ *      bug where popups happen multiple times (on every menu)
+ * STUDENT: 
  *      export data
  *  INSTRUCTOR: 
  *      fix assignment always being null in edit assignment menu
- *      grade summary
  *      manage courses
  *      export data
  *  
@@ -237,6 +239,9 @@ public class GUI{
         StartListener startListener = new StartListener();
         bLoginInstructor.addActionListener(startListener);
         bLoginStudent.addActionListener(startListener);
+
+        // BETA warning
+        JOptionPane.showMessageDialog(null, "WARNING: The GUI is unfinished. There may be unexpected errors or unfinished segments. ", "Menu In Beta", JOptionPane.WARNING_MESSAGE);
     }
 
     // start event handler
@@ -442,7 +447,7 @@ public class GUI{
 
     // FIXME export student data 
     private void exportStudentData(){
-        System.out.println("exporting...");
+        JOptionPane.showMessageDialog(null, "In Development", "Menu In Beta", JOptionPane.WARNING_MESSAGE); //BETA
     }
 
     // instructor menu
@@ -823,7 +828,7 @@ public class GUI{
                     else if(manager.getStudent(ID) == null){
                         JOptionPane.showMessageDialog(null, "Student At ID " + ID + " Does Not Exist", "Nonexistant Item", JOptionPane.ERROR_MESSAGE);
                     }
-                    // FIXME: assignment always returning as null
+                    // FIXME: assignment always returning as null 
                     else if(assignment == null){
                         JOptionPane.showMessageDialog(null, "Assignment " + assignmentName + " Not Found", "Nonexistant Item", JOptionPane.ERROR_MESSAGE);
                     }
@@ -991,12 +996,14 @@ public class GUI{
 
     // FIXME: manage courses menu & logic
     private void manageCoursesMenu(){
+        JOptionPane.showMessageDialog(null, "In Development", "Menu In Beta", JOptionPane.WARNING_MESSAGE); //BETA
         System.out.println("managing courses...");
     }
 
 
     // FIXME: grade summary
     private void gradeSummary(Student student){
+        JOptionPane.showMessageDialog(null, "In Development", "Menu In Beta", JOptionPane.WARNING_MESSAGE); //BETA
         System.out.println("grade summary for " + student.getName());
     }
     

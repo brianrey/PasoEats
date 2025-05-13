@@ -1,13 +1,17 @@
+/*
+ * Uncomment lines 9 & 14 to use the GUI. This section is unfinished, so sections may still be in development or cause unexpected errors. 
+ */
+
 public class Main {
     public static void main(String[] args) {
         Manager manager = new Manager();
-        //UserInterface ui = new UserInterface(manager);
-        GUI gui = new GUI(manager);
+        UserInterface ui = new UserInterface(manager);
+        //GUI gui = new GUI(manager);
 
         loadSampleData(manager);
 
-        //ui.startApp();
-        gui.startApp();
+        ui.startApp();
+        //gui.startApp();
     }
 
     public static void loadSampleData(Manager manager) {
@@ -56,9 +60,9 @@ public class Main {
         manager.enrollStudent("11", "CS4");
         manager.enrollStudent("12", "CS4");
 
-        manager.enrollStudent("13", "Dr Pepper History");
-        manager.enrollStudent("14", "Dr Pepper History");
-        manager.enrollStudent("15", "Dr Pepper History");
+        manager.enrollStudent("13", "History1");
+        manager.enrollStudent("14", "History1");
+        manager.enrollStudent("15", "History1");
 
         manager.addAssignment("CS1", "Assignment 1", 100);
         manager.addAssignment("CS1", "Assignment 2", 100);
