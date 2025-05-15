@@ -1,5 +1,7 @@
 # PasoEats
 Cuesta College CIS-321 Project Repository.
+Documentation:
+https://pasoeats.gitbook.io/pasoeats
 
 <p align="left">
   <img src="https://img.shields.io/github/stars/brianrey/PasoEats?style=social" alt="Stars" />
