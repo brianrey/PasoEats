@@ -31,6 +31,7 @@ public class UserInterface {
      * @param manager The Manager object to set
      */
     public void setManager(Manager manager) {
+
         this.manager = manager;
     }
 
@@ -80,6 +81,7 @@ public class UserInterface {
                 case 2:
                     System.out.println("\n Student Login\n");
                     String studentID = readStringInput("Please enter your Student ID: ");
+                    Manager manager = this.getManager();
                     Student student = manager.getStudent(studentID);
 
                     if (student != null) {
@@ -116,7 +118,7 @@ public class UserInterface {
      * Prints the login screen with role selection options.
      */
     private void printLoginScreen() {
-        System.out.println("");
+        System.out.println(" "); //add space so intelliJ doesn't provide warning
         System.out.println(" Login");
         System.out.println();
         System.out.println(" Please select your role:");
@@ -192,7 +194,7 @@ public class UserInterface {
      * Prints the student main menu options.
      */
     private void printStudentMenu() {
-        System.out.println("");
+        System.out.println(" "); //add space so intelliJ doesn't provide warning
         System.out.println(" Student Menu");
         System.out.println();
         System.out.println("   1: View Grade Summary");
@@ -461,10 +463,11 @@ public class UserInterface {
         boolean managing = true;
         while(managing) {
             manageCoursesMenu();
+            String courseName;
             int choice = readIntInput("Please select an option (1-5): ");
             switch(choice) {
                 case 1:
-                    String courseName = readStringInput("Enter Course Name: ");
+                    courseName = readStringInput("Enter Course Name: ");
                     if (manager.getCourse(courseName) != null) {
                         System.out.println("\u001B[31mCourse " + courseName + " already exists.\u001B[0m");
                     } else {
@@ -539,8 +542,8 @@ public class UserInterface {
      */
     private void exportInstructorData() {
 
-        boolean exportMagement = true;
-        while (exportMagement) {
+        boolean exportManagement = true;
+        while (exportManagement) {
             manager.printInstructorNames();
 
             String instructorName = readStringInput("Please enter an instructor name to export data for (or type \"Exit\"): ");
@@ -556,11 +559,10 @@ public class UserInterface {
             if (instructor == null) {
                 System.out.println("\u001B[31mInstructor " + instructorName + " not found.\u001B[0m");
                 waitForEnter();
-                continue;
             } else {
                 System.out.println("\n\u001B[32m" + instructorName + " found.\u001B[0m");
                 manager.exportInstructorData(instructor);
-                exportMagement = false;
+                exportManagement = false;
                 waitForEnter();
             }
         }
@@ -661,7 +663,8 @@ public class UserInterface {
      * @return The validated integer input
      */
     private int readIntInput(String prompt) {
-        int input = -1;
+        Scanner scanner = this.getScanner();
+        int input;
         while (true) {
             System.out.print(prompt);
             try {
@@ -682,7 +685,7 @@ public class UserInterface {
      * @return The validated string input
      */
     private String readStringInput(String prompt) {
-        String input = "";
+        String input;
         while (true) {
              System.out.print(prompt);
              input = scanner.nextLine().trim();
