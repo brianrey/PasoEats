@@ -36,7 +36,7 @@ public class Main {
         manager.addInstructor("smith@example.com", "Professor Smith", "CS2");
         manager.addInstructor("johnson@example.com", "Professor Johnson", "CS3");
         manager.addInstructor("lee@example.com", "Professor Lee", "CS4");
-        manager.addInstructor("drpepper@example.com", "Dr. Pepper", "Dr Pepper History"); // The best instructor
+        manager.addInstructor("drpepper@example.com", "Dr. Pepper", "History1"); // The best instructor
 
         manager.addCourse("CS1", "810", "2:00pm", "Professor Dube", "Monday - Wednesday");
         manager.addCourse("CS2", "811", "2:00pm", "Professor Smith", "Monday - Wednesday");
