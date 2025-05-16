@@ -1,0 +1,819 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1261px" height="754px" viewBox="-0.5 -0.5 1261 754" content="&lt;mxfile scale=&quot;1&quot; border=&quot;0&quot;&gt;&lt;diagram name=&quot;Page-1&quot; id=&quot;3vcph6E7LWzcGqXoo5CB&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <g>
+            <path d="M 350 23 L 350 0 L 640 0 L 640 23" fill="#ffffff" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+            <path d="M 350 23 L 350 280 L 640 280 L 640 23" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+            <path d="M 350 23 L 640 23" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 278px; height: 1px; padding-top: 12px; margin-left: 356px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                    <div align="center">
+                                        Course
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="495" y="15" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px" text-anchor="middle" font-weight="bold">
+                        Course
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <rect x="350" y="20" width="290" height="260" fill="none" stroke="none" pointer-events="all"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 278px; height: 1px; padding-top: 150px; margin-left: 357px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: left; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div>
+                                        private String courseName
+                                    </div>
+                                    <div>
+                                        private String instructor
+                                    </div>
+                                    <div>
+                                        private String roomNumber
+                                    </div>
+                                    <div>
+                                        private String schedule
+                                    </div>
+                                    <div>
+                                        private ArrayList&lt;Student&gt; roster
+                                    </div>
+                                    <div>
+                                        <br/>
+                                    </div>
+                                    <div>
+                                        public Course(//all vars but roster)
+                                    </div>
+                                    <div>
+                                        // setters for courseName, roomNumber, instructor, schedule
+                                    </div>
+                                    <div>
+                                        // getters for courseName, roomNumber, instructor, schedule, roster
+                                    </div>
+                                    <div>
+                                        public void setRoster(ArrayList&lt;Student&gt; roster)
+                                    </div>
+                                    <div>
+                                        public void addStudent(Student student)
+                                    </div>
+                                    <div>
+                                        public void printStudentRoster()
+                                    </div>
+                                    <div>
+                                        public void printDetails()
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="357" y="154" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px">
+                        private String courseName...
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <path d="M 810 320 L 810 300 L 1120 300 L 1120 286.37" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="stroke"/>
+            <path d="M 1120 281.12 L 1123.5 288.12 L 1120 286.37 L 1116.5 288.12 Z" fill="#000000" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        </g>
+        <g>
+            <path d="M 660 343 L 660 320 L 960 320 L 960 343" fill="#ffffff" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+            <path d="M 660 343 L 660 560 L 960 560 L 960 343" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+            <path d="M 660 343 L 960 343" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 288px; height: 1px; padding-top: 332px; margin-left: 666px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                    <div align="center">
+                                        Student (extends Person)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="810" y="335" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px" text-anchor="middle" font-weight="bold">
+                        Student (extends Person)
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <rect x="660" y="340" width="300" height="220" fill="none" stroke="none" pointer-events="all"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 288px; height: 1px; padding-top: 450px; margin-left: 667px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: left; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div>
+                                        <div>
+                                            public int studentID
+                                        </div>
+                                        <div>
+                                            private ArrayList&lt;Assignment&gt; assignments;
+                                        </div>
+                                        <div>
+                                            <br/>
+                                        </div>
+                                        <div>
+                                            public Student(String name, String email, int studentID)
+                                        </div>
+                                    </div>
+                                    <div>
+                                        public void setID(int ID)
+                                    </div>
+                                    <div>
+                                        public int getID()
+                                    </div>
+                                    <div>
+                                        public void addAssignment(String assignmentName, int score)
+                                    </div>
+                                    <div>
+                                        public ArrayList&lt;Assignment&gt; getAssignments()
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                public void printDetails()
+                                            </div>
+                                            <div>
+                                                public void exportStudent()
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="667" y="454" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px">
+                        public int studentID...
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <path d="M 660 23 L 660 0 L 960 0 L 960 23" fill="#ffffff" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+            <path d="M 660 23 L 660 280 L 960 280 L 960 23" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+            <path d="M 660 23 L 960 23" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 288px; height: 1px; padding-top: 12px; margin-left: 666px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                    <div align="center">
+                                        Assignment
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="810" y="15" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px" text-anchor="middle" font-weight="bold">
+                        Assignment
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <rect x="660" y="20" width="300" height="260" fill="none" stroke="none" pointer-events="all"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 288px; height: 1px; padding-top: 150px; margin-left: 667px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: left; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div>
+                                        private String assignmentName
+                                    </div>
+                                    <div>
+                                        private int score
+                                    </div>
+                                    <div>
+                                        private static final int MAX_SCORE = 100
+                                    </div>
+                                    <div>
+                                        <br/>
+                                    </div>
+                                    <div>
+                                        public Assignment(String assignmentName, int score)
+                                    </div>
+                                    <div>
+                                        public void setAssignmentName(string assignmentName)
+                                    </div>
+                                    <div>
+                                        public void setScore(int score)
+                                    </div>
+                                    <div>
+                                        public String getAssignmentName()
+                                    </div>
+                                    <div>
+                                        public int getMaxScore()
+                                    </div>
+                                    <div>
+                                        public int getScore()
+                                    </div>
+                                    <div>
+                                        public void printDetails()
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="667" y="154" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px">
+                        private String assignmentName...
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <path d="M 0 23 L 0 0 L 330 0 L 330 23" fill="#ffffff" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+            <path d="M 0 23 L 0 150 L 330 150 L 330 23" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+            <path d="M 0 23 L 330 23" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 318px; height: 1px; padding-top: 12px; margin-left: 6px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                    <div align="center">
+                                        Grade
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="165" y="15" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px" text-anchor="middle" font-weight="bold">
+                        Grade
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <rect x="0" y="20" width="330" height="130" fill="none" stroke="none" pointer-events="all"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 318px; height: 1px; padding-top: 85px; margin-left: 7px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: left; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div>
+                                        private int grade;
+                                    </div>
+                                    <div>
+                                        <br/>
+                                    </div>
+                                    <div>
+                                        public void setGrade(int grade)
+                                    </div>
+                                    <div>
+                                        public int getGrade()
+                                    </div>
+                                    <div>
+                                        public String getLetterGrade(ArrayList&lt;Assignment&gt; assignments)
+                                    </div>
+                                    <div>
+                                        public void getClassGrades
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="7" y="89" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px">
+                        private int grade;...
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <path d="M 1120 320 L 1120 286.37" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="stroke"/>
+            <path d="M 1120 281.12 L 1123.5 288.12 L 1120 286.37 L 1116.5 288.12 Z" fill="#000000" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        </g>
+        <g>
+            <path d="M 980 343 L 980 320 L 1260 320 L 1260 343" fill="#ffffff" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+            <path d="M 980 343 L 980 560 L 1260 560 L 1260 343" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+            <path d="M 980 343 L 1260 343" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 268px; height: 1px; padding-top: 332px; margin-left: 986px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                    <div align="center">
+                                        Instructor (extends Person)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="1120" y="335" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px" text-anchor="middle" font-weight="bold">
+                        Instructor (extends Person)
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <rect x="980" y="340" width="280" height="220" fill="none" stroke="none" pointer-events="all"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 268px; height: 1px; padding-top: 450px; margin-left: 987px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: left; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div>
+                                        private String courseName;
+                                    </div>
+                                    <div>
+                                        <br/>
+                                    </div>
+                                    <div>
+                                        public Instructor(String name, String email, String courseName)
+                                    </div>
+                                    <div>
+                                        public String getCourseName()
+                                    </div>
+                                    <div>
+                                        public void setCourseName()
+                                    </div>
+                                    <div>
+                                        public void printDetails()
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="987" y="454" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px">
+                        private String courseName;...
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <path d="M 980 23 L 980 0 L 1260 0 L 1260 23" fill="#ffffff" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+            <path d="M 980 23 L 980 280 L 1260 280 L 1260 23" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+            <path d="M 980 23 L 1260 23" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 268px; height: 1px; padding-top: 12px; margin-left: 986px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                    <div align="center">
+                                        Abstract Person
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="1120" y="15" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px" text-anchor="middle" font-weight="bold">
+                        Abstract Person
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <rect x="980" y="20" width="280" height="260" fill="none" stroke="none" pointer-events="all"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 268px; height: 1px; padding-top: 150px; margin-left: 987px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: left; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div>
+                                        private String name
+                                    </div>
+                                    <div>
+                                        private String email
+                                    </div>
+                                    <div>
+                                        <br/>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            public Person(String name, String email)
+                                        </div>
+                                        <div>
+                                            public void printDetails()
+                                        </div>
+                                    </div>
+                                    <div>
+                                        public void setName(String name)
+                                    </div>
+                                    <div>
+                                        public String getName()
+                                    </div>
+                                    <div>
+                                        public void setEmail(String email)
+                                    </div>
+                                    <div>
+                                        public String getEmail()
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="987" y="154" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px">
+                        private String name...
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <path d="M 350 323 L 350 300 L 640 300 L 640 323" fill="#ffffff" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+            <path d="M 350 323 L 350 560 L 640 560 L 640 323" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+            <path d="M 350 323 L 640 323" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 278px; height: 1px; padding-top: 312px; margin-left: 356px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                    <div align="center">
+                                        Manager
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="495" y="315" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px" text-anchor="middle" font-weight="bold">
+                        Manager
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <rect x="350" y="320" width="290" height="240" fill="none" stroke="none" pointer-events="all"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 278px; height: 1px; padding-top: 440px; margin-left: 357px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: left; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div>
+                                        private ArrayList&lt;Student&gt; students = new ArrayList&lt;Student&gt;()
+                                    </div>
+                                    <div>
+                                        <div>
+                                            private ArrayList&lt;Instructor&gt; instructors = new ArrayList&lt;Instructor&gt;()
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            private ArrayList&lt;Course&gt; courses = new ArrayList&lt;Course&gt;()
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <br/>
+                                    </div>
+                                    <div>
+                                        addStudent(), addInstructor(), addCourse(), addAssignment(), enrollStudent()
+                                    </div>
+                                    <div>
+                                        getStudent(), getInstructor, getCourse, getStudentGrade()
+                                    </div>
+                                    <div>
+                                        printStudents(), printStudent(), exportStudents(), printInstructors(), printCourses()
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="357" y="444" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px">
+                        private ArrayList&lt;Student&gt; students = new A...
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <path d="M 0 613 L 0 590 L 1260 590 L 1260 613" fill="#ffffff" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+            <path d="M 0 613 L 0 750 L 1260 750 L 1260 613" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+            <path d="M 0 613 L 1260 613" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1248px; height: 1px; padding-top: 602px; margin-left: 6px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                <div style="display: inline-block; font-size: 12px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                    <div align="center">
+                                        Explanation
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="630" y="605" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="12px" text-anchor="middle" font-weight="bold">
+                        Explanation
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <rect x="0" y="610" width="180" height="140" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" pointer-events="all"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 168px; height: 1px; padding-top: 617px; margin-left: 7px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: left; max-height: 136px; overflow: hidden; color: #000000; ">
+                                <div style="display: inline-block; font-size: 12px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <h1 style="margin-top: 0px;">
+                                        Polymorphism
+                                    </h1>
+                                    <p>
+                                        Student and Instructor have both inherited methods (IE printDetails()) but will be overridden to behave differently for each class
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="7" y="629" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="12px">
+                        Polymorphism...
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <rect x="180" y="610" width="180" height="140" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" pointer-events="all"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 168px; height: 1px; padding-top: 617px; margin-left: 187px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: left; max-height: 136px; overflow: hidden; color: #000000; ">
+                                <div style="display: inline-block; font-size: 12px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <h1 style="margin-top: 0px;">
+                                        Encapsulation
+                                    </h1>
+                                    <p>
+                                        Frequent use of setters and getters with private variables and public methods
+                                        <br/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="187" y="629" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="12px">
+                        Encapsulation...
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <rect x="360" y="610" width="180" height="140" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" pointer-events="all"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 168px; height: 1px; padding-top: 617px; margin-left: 367px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: left; max-height: 136px; overflow: hidden; color: #000000; ">
+                                <div style="display: inline-block; font-size: 12px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <h1 style="margin-top: 0px;">
+                                        Inheritance
+                                    </h1>
+                                    <p>
+                                        Student and Instructor both inherit Person
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="367" y="629" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="12px">
+                        Inheritance...
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <rect x="540" y="610" width="180" height="140" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" pointer-events="all"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 168px; height: 1px; padding-top: 617px; margin-left: 547px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: left; max-height: 136px; overflow: hidden; color: #000000; ">
+                                <div style="display: inline-block; font-size: 12px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <h1 style="margin-top: 0px;">
+                                        Abstraction
+                                    </h1>
+                                    <p>
+                                        There is an abstract class Person and a console interface to hide complexity
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="547" y="629" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="12px">
+                        Abstraction...
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <rect x="720" y="610" width="330" height="140" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" pointer-events="all"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 318px; height: 1px; padding-top: 617px; margin-left: 727px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: left; max-height: 136px; overflow: hidden; color: #000000; ">
+                                <div style="display: inline-block; font-size: 12px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <h1 style="margin-top: 0px;">
+                                        Description &amp; Justification
+                                    </h1>
+                                    <p>
+                                        Using a manager class to handle all objects, as well as dynamic ArrayLists to contain them. An interface is used by the user, which itself makes use of the manager. This makes it simple to interact with all of the classes.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="727" y="629" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="12px">
+                        Description &amp; Justification...
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <rect x="1050" y="610" width="210" height="140" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" pointer-events="all"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 198px; height: 1px; padding-top: 617px; margin-left: 1057px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: left; max-height: 136px; overflow: hidden; color: #000000; ">
+                                <div style="display: inline-block; font-size: 12px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <h1 style="margin-top: 0px;">
+                                        Credits
+                                    </h1>
+                                    <p style="line-height: 70%;">
+                                        Reese: Primary Coder
+                                    </p>
+                                    <p style="line-height: 70%;">
+                                        Brian: Team Manager, Coder
+                                    </p>
+                                    <p style="line-height: 70%;">
+                                        Connor: Documentation, Design
+                                    </p>
+                                    <p style="line-height: 70%;">
+                                        Armando: Coder
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="1057" y="629" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="12px">
+                        Credits...
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <path d="M 0 183 L 0 160 L 330 160 L 330 183" fill="#ffffff" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+            <path d="M 0 183 L 0 560 L 330 560 L 330 183" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+            <path d="M 0 183 L 330 183" fill="none" stroke="#000000" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" stroke-miterlimit="10" pointer-events="none"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 318px; height: 1px; padding-top: 172px; margin-left: 6px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                    UserInterface
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="165" y="175" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px" text-anchor="middle" font-weight="bold">
+                        UserInterface
+                    </text>
+                </switch>
+            </g>
+        </g>
+        <g>
+            <rect x="0" y="180" width="330" height="380" fill="none" stroke="none" pointer-events="all"/>
+        </g>
+        <g>
+            <g transform="translate(-0.5 -0.5)">
+                <switch>
+                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 318px; height: 1px; padding-top: 370px; margin-left: 7px;">
+                            <div style="box-sizing: border-box; font-size: 0; text-align: left; color: #000000; ">
+                                <div style="display: inline-block; font-size: 13px; font-family: &quot;Helvetica&quot;; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div>
+                                        private Manager manager
+                                    </div>
+                                    <div>
+                                        private Scanner scanner
+                                    </div>
+                                    <div>
+                                        <br/>
+                                    </div>
+                                    <div>
+                                        public UserInterface(Manager manager)
+                                    </div>
+                                    <div>
+                                        public void startApp()
+                                    </div>
+                                    <div>
+                                        // private void printers: printWelcomeMessage, printLoginScreen, printGoodbyeMessage, printInstructorMenu, printStudentMenu
+                                    </div>
+                                    <div>
+                                        private void instructorMainMenuLoop()
+                                    </div>
+                                    <div>
+                                        private void studentMainMenuLoop(Student student)
+                                    </div>
+                                    <div>
+                                        // private void manage: manageStudentsMenu, manageStudents, manageAssignmentsMenu, manageAssignments, manageInstructorsMenu, manageInstructors, manageCoursesMenu, manageCourses
+                                    </div>
+                                    <div>
+                                        private void exportData()
+                                    </div>
+                                    <div>
+                                        private void exportStudentData()
+                                    </div>
+                                    <div>
+                                        private void gradeSummary(Student student)
+                                    </div>
+                                    <div>
+                                        private void changeStudentName(Student student)
+                                    </div>
+                                    <div>
+                                        private void changeStudentEmail(Student student)
+                                    </div>
+                                    <div>
+                                        private int readIntInput(String prompt)
+                                    </div>
+                                    <div>
+                                        private String readStringInput(String prompt)
+                                    </div>
+                                    <div>
+                                        private void waitForEnter()
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </foreignObject>
+                    <text x="7" y="374" fill="light-dark(#000000, #ffffff)" font-family="&quot;Helvetica&quot;" font-size="13px">
+                        private Manager manager...
+                    </text>
+                </switch>
+            </g>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.drawio.com/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Text is not SVG - cannot display
+            </text>
+        </a>
+    </switch>
+</svg>
